@@ -1,0 +1,88 @@
+:root {
+	--background: url('../assets/background/background.png') center / cover
+		no-repeat;
+	--bg-scroll-thumb: #adacac;
+	--bg-scroll-track: #eff2f9;
+	--bg-auth: #bcd8ff;
+	--bg-auth-form: #ffffff;
+	--bg-auth-background: none;
+	--bg-modal-btn: #fbfbfb;
+	--bg-auth-input: #eff2f9;
+	--bg-hover-unchange: #eff2f980;
+	--bg-drop-list: #ffffff;
+	--bg-modal-overlay: rgba(250, 250, 250, 0.5);
+	--bg-modal: #ffffff;
+	--bg-white: #ffffff;
+	--bg-navbar-overlay: #eff2f9;
+	--bg-inactive-grey: #bdbdbd;
+	--bg-mode: #bcd8ff;
+	--bg-switcher: #ffffff;
+	--bg-info-board: #eff2f9;
+	--bg-modal-box-content: #ffffff;
+	--bg-post-wrap: #ffffff;
+	--bg-poll-quiz: #eff2f94d;
+	--bg-form-comment-options: #adacac1a;
+
+	--color-accent: #2f7bf6;
+	--color-accent-change: #2f7bf6;
+	--color-dark-blue: #094ebe;
+	--color-white: #ffffff;
+	--color-grey-change: #787878;
+	--color-black-change: #252425;
+	--color-black-light-change: #212121;
+	--color-grey-light: #adacac;
+	--color-red: #f63b3b;
+	--color-green: #70c56f;
+	--color-orange: #fdb730;
+	--color-yellow: #ffd90f;
+
+	--shadow-auth-modal: 0px 4px 16px 0px #8dd3bb26;
+	--shadow-modal-btn: 0px 0px 5px 0px rgba(37, 36, 37, 0.1);
+	--shadow-modal: 0px 0px 5px 0px rgba(37, 36, 37, 0.1);
+	--shadow-dropdown: 0px 0px 10px 0px #01010114;
+
+	--transition-btn: all 0.25s ease;
+}
+
+[data-theme='dark'] {
+	--background: url('../assets/background/background-dark.png') center / cover
+		no-repeat;
+	--bg-scroll-thumb: #adacac;
+	--bg-scroll-track: #666666;
+	--bg-auth: #01111f;
+	--bg-auth-form: #01111f;
+	--bg-auth-background: url(../assets/background/register-gradient.png);
+	--bg-modal-btn: #01111f;
+	--bg-auth-input: #eff2f933;
+	--bg-drop-list: #01111f;
+	--bg-modal-overlay: #01111f71;
+	--bg-modal: #01111fcc;
+	--bg-white: #4242421a;
+	--bg-navbar-overlay: #01111f;
+	--bg-inactive-grey: #bdbdbd;
+	--bg-mode: #094ebe80;
+	--bg-switcher: #ffffff;
+	--bg-info-board: #01111f80;
+	--bg-modal-box-content: #01111f;
+	--bg-post-wrap: #1f344c;
+	--bg-poll-quiz: #eff2f91a;
+	--bg-form-comment-options: #adacac1a;
+
+	--color-accent: #2f7bf6;
+	--color-accent-change: #ffffff;
+	--color-dark-blue: #094ebe;
+	--color-white: #ffffff;
+	--color-grey-change: #ffffff;
+	--color-black-change: #ffffff;
+	--color-black-light-change: #191919;
+	--color-grey-light: #ffffff66;
+	--color-red: #f63b3b;
+	--color-green: #70c56f;
+	--color-orange: #fdb730;
+	--color-yellow: #ffd90f;
+
+	--shadow-auth-modal: 0px 4px 16px 0px #2f7bf6;
+	--shadow-modal-btn: 0px 0px 5px 0px #2524251a;
+	--shadow-modal: 0px 4px 16px 0px #2f7bf6;
+	--shadow-dropdown: 0px 0px 10px 0px #ffffff3a;
+}
