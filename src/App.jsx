@@ -1,21 +1,20 @@
 import { useEffect } from 'react';
 import {
 	BrowserRouter as Router,
-	// Routes,
-	// Route,
+	Routes,
+	Route,
 	// Navigate,
 } from 'react-router-dom';
-// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAuthStore } from './store/useAuthStore';
 
 import Navbar from './components/Navbar';
-// import HomePage from './pages/HomePage';
+import HomePage from './pages/HomePage';
 // import PostDetailsPage from './pages/PostDetailsPage';
 // import Loader from './components/Loader';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 
 // import { AuthProvider } from './auth/useAuth';
 
@@ -51,12 +50,12 @@ const App = () => {
 			{/* <AuthProvider> */}
 			<Navbar />
 
-			{/* <Routes>
-		 			<Route path="/" element={<HomePage />} />
-				<Route path="/post/:postId" element={<PostDetailsPage />} />
-				</Routes> */}
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				{/* <Route path="/post/:postId" element={<PostDetailsPage />} /> */}
+			</Routes>
 
-			{/* <Footer /> */}
+			<Footer />
 
 			<ToastContainer
 				position="top-right"
