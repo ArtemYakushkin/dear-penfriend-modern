@@ -1,5 +1,12 @@
 import { create } from 'zustand';
-import { collection, query, orderBy, getDocs } from 'firebase/firestore';
+import {
+	collection,
+	query,
+	orderBy,
+	getDocs,
+	doc,
+	getDoc,
+} from 'firebase/firestore';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
@@ -46,6 +53,40 @@ export const usePostsStore = create((set, get) => ({
 			console.error('Error fetching posts', e);
 			set({ isLoading: false });
 		}
+	},
+
+	getPostById: async (postId) => {
+		const ref = doc(db, 'posts', postId);
+		const snap = await getDoc(ref);
+
+		if (!snap.exists()) return null;
+
+		return {
+			id: snap.id,
+			...snap.data(),
+		};
+	},
+
+	loadAuthorById: async (uid) => {
+		const { authors } = get();
+
+		if (authors[uid]) return authors[uid];
+
+		const ref = doc(db, 'users', uid);
+		const snap = await getDoc(ref);
+
+		if (!snap.exists()) return null;
+
+		const author = { uid, ...snap.data() };
+
+		set({
+			authors: {
+				...authors,
+				[uid]: author,
+			},
+		});
+
+		return author;
 	},
 
 	// ===================== INIT USER STATE (LIKES + SAVED) =====================

@@ -15,6 +15,12 @@ const BoardBox = styled.div`
 	gap: 10px;
 	color: var(--color-accent);
 	box-shadow: var(--shadow-dropdown);
+
+	@media (max-width: 767px) {
+		width: 220px;
+		padding: 12px 8px 12px 6px;
+		gap: 6px;
+	}
 `;
 
 const BoardMessage = styled.p`
@@ -23,6 +29,11 @@ const BoardMessage = styled.p`
 	font-size: 16px;
 	line-height: 16px;
 	color: var(--text-black);
+
+	@media (max-width: 767px) {
+		font-size: 13px;
+		line-height: 13px;
+	}
 `;
 
 const InfoBoard = ({ message, style }) => {

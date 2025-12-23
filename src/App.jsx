@@ -12,7 +12,7 @@ import { useAuthStore } from './store/useAuthStore';
 
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
-// import PostDetailsPage from './pages/PostDetailsPage';
+import PostDetailsPage from './pages/PostDetailsPage';
 // import Loader from './components/Loader';
 import Footer from './components/Footer';
 
@@ -52,7 +52,7 @@ const App = () => {
 
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				{/* <Route path="/post/:postId" element={<PostDetailsPage />} /> */}
+				<Route path="/post/:postId" element={<PostDetailsPage />} />
 			</Routes>
 
 			<Footer />
