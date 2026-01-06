@@ -342,3 +342,66 @@ export const InputRememberIcon = styled.div`
 	pointer-events: none;
 	transition: opacity 0.3s;
 `;
+
+export const InputSocialWrap = styled.label`
+	position: relative;
+	width: 100%;
+	height: 30px;
+	display: flex;
+	align-items: center;
+
+	p {
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 16.8px;
+		color: var(--color-grey-light);
+		min-width: 60px;
+	}
+
+	img {
+		margin-right: 10px;
+	}
+
+	@media (max-width: 767px) {
+		p {
+			display: none;
+		}
+	}
+`;
+
+export const InputSocialField = styled.input`
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 0 8px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16.8px;
+	color: var(--color-black-change);
+	background-color: var(--bg-auth-input);
+	border: 1px solid var(--bg-auth-input);
+	border-radius: 10px;
+
+	&:focus {
+		background-color: var(--bg-hover-unchange);
+		border: 1px solid var(--color-accent);
+	}
+
+	&::placeholder {
+		position: absolute;
+		right: 8px;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 16.8px;
+		color: var(--color-grey-light);
+	}
+`;
+
+export const InputSocialError = styled.span`
+	position: absolute;
+	right: 8px;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16.8px;
+	color: var(--color-red);
+`;

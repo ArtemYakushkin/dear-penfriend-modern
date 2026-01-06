@@ -27,6 +27,10 @@ const HomePage = () => {
 
 	const currentPosts = filteredPosts.slice(0, visibleCount);
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<>
 			<Hero />

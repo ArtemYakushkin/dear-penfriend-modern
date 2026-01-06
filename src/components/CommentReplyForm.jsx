@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
-import Picker from '@emoji-mart/react';
-import data from '@emoji-mart/data';
+import EmojiPicker from 'emoji-picker-react';
 
 import { useAuthStore } from '../store/useAuthStore';
 import { useAuthModals } from '../hooks/useAuthModals';
@@ -62,32 +61,21 @@ const CommentReplyForm = ({ postId, commentId }) => {
 
 					<Options>
 						<Wrap>
-							<BtnEmoji
-								type="button"
-								onClick={() =>
-									setShowEmojiPicker(!showEmojiPicker)
-								}
-							>
+							<BtnEmoji type="button" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
 								<BsEmojiSmile size={24} />
 							</BtnEmoji>
 						</Wrap>
 
 						<BtnSubmit type="submit">
-							<IoSend
-								size={isTablet || isMobile ? 24 : 30}
-								color="var(--color-accent)"
-							/>
+							<IoSend size={isTablet || isMobile ? 24 : 30} color="var(--color-accent)" />
 						</BtnSubmit>
 					</Options>
 
 					{showEmojiPicker && (
 						<EmojiModal ref={emojiPickerRef}>
-							<Picker
-								data={data}
-								onEmojiSelect={(emoji) =>
-									addEmoji(emoji, setText, setShowEmojiPicker)
-								}
+							<EmojiPicker
 								theme="light"
+								onEmojiClick={(emojiData) => addEmoji(emojiData, setText, setShowEmojiPicker)}
 							/>
 						</EmojiModal>
 					)}

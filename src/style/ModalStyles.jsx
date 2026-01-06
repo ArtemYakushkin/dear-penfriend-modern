@@ -30,6 +30,14 @@ export const Modal = styled.div`
 		border-top: 14px solid var(--color-orange);
 	}
 
+	&.editProfile {
+		width: 860px;
+		max-height: 95vh;
+		padding: 40px 24px 40px 40px;
+		display: flex;
+		flex-direction: column;
+	}
+
 	@media (max-width: 767px) {
 		max-width: 327px;
 		max-height: 100%;
@@ -39,7 +47,22 @@ export const Modal = styled.div`
 		&.modal-orange {
 			border-top: 10px solid var(--color-orange);
 		}
+
+		&.editProfile {
+			width: 100%;
+			max-width: 375px;
+			max-height: 90vh;
+			padding: 40px 4px 40px 24px;
+		}
 	}
+`;
+
+export const ModalScroll = styled.div`
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	max-height: calc(95vh - 80px);
+	padding-right: 10px;
 `;
 
 export const ModalWrap = styled.div`

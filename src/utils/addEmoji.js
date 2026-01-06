@@ -1,4 +1,4 @@
-export const addEmoji = (emoji, setText, setShowEmojiPicker) => {
-	setText((prev) => prev + emoji.native);
+export const addEmoji = (emojiData, setText, setShowEmojiPicker) => {
+	setText((prev) => prev + emojiData.emoji);
 	setShowEmojiPicker(false);
 };

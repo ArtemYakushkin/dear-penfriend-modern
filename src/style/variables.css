@@ -22,6 +22,11 @@
 	--bg-post-wrap: #ffffff;
 	--bg-poll-quiz: #eff2f94d;
 	--bg-form-comment-options: #adacac1a;
+	--bg-section: #eff2f9;
+	--bg-dark-white: #fbfbfb;
+	--bg-letter: #ffffffb2;
+	--bg-author-info: #ffffff;
+	--bg-author-status: #eff2f9;
 
 	--color-accent: #2f7bf6;
 	--color-accent-change: #2f7bf6;
@@ -36,6 +41,8 @@
 	--color-orange: #fdb730;
 	--color-yellow: #ffd90f;
 	--color-more: #787878;
+	--color-not-change: #787878;
+	--color-equivalent: #212121;
 
 	--shadow-auth-modal: 0px 4px 16px 0px #8dd3bb26;
 	--shadow-modal-btn: 0px 0px 5px 0px rgba(37, 36, 37, 0.1);
@@ -68,6 +75,11 @@
 	--bg-post-wrap: #1f344c;
 	--bg-poll-quiz: #eff2f91a;
 	--bg-form-comment-options: #adacac1a;
+	--bg-section: #ffffff06;
+	--bg-dark-white: #fbfbfb5e;
+	--bg-letter: #094ebe33;
+	--bg-author-info: #094ebe4d;
+	--bg-author-status: #eff2f91a;
 
 	--color-accent: #2f7bf6;
 	--color-accent-change: #ffffff;
@@ -82,6 +94,8 @@
 	--color-orange: #fdb730;
 	--color-yellow: #ffd90f;
 	--color-more: #ffffff66;
+	--color-not-change: #787878;
+	--color-equivalent: #191919;
 
 	--shadow-auth-modal: 0px 4px 16px 0px #2f7bf6;
 	--shadow-modal-btn: 0px 0px 5px 0px #2524251a;

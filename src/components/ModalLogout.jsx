@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
 
 import {
@@ -12,6 +13,7 @@ import {
 
 const ModalLogout = ({ onClose }) => {
 	const { logout } = useAuthStore();
+	const navigate = useNavigate();
 
 	return (
 		<ModalOverlay id="modal-overlay">
@@ -25,6 +27,7 @@ const ModalLogout = ({ onClose }) => {
 							onClick={() => {
 								logout();
 								onClose();
+								navigate('/');
 							}}
 						>
 							Yes

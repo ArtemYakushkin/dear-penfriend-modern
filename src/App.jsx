@@ -13,10 +13,11 @@ import { useAuthStore } from './store/useAuthStore';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import PostDetailsPage from './pages/PostDetailsPage';
+import AboutPage from './pages/AboutPage';
+import ProfilePage from './pages/ProfilePage';
+import AuthorPage from './pages/AuthorPage';
 // import Loader from './components/Loader';
 import Footer from './components/Footer';
-
-// import { AuthProvider } from './auth/useAuth';
 
 // const allowedEmails = process.env.REACT_APP_ALLOWED_EMAILS?.split(',') || [];
 
@@ -26,6 +27,7 @@ const App = () => {
 	useEffect(() => {
 		init();
 	}, [init]);
+
 	// const [user, setUser] = useState(null);
 	// const [authChecked, setAuthChecked] = useState(false);
 
@@ -47,12 +49,14 @@ const App = () => {
 
 	return (
 		<Router>
-			{/* <AuthProvider> */}
 			<Navbar />
 
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/post/:postId" element={<PostDetailsPage />} />
+				<Route path="/about" element={<AboutPage />} />
+				<Route path="/profile" element={<ProfilePage />} />
+				<Route path="/author/:uid" element={<AuthorPage />} />
 			</Routes>
 
 			<Footer />
@@ -66,7 +70,6 @@ const App = () => {
 				draggable
 				theme="colored"
 			/>
-			{/* </AuthProvider> */}
 		</Router>
 	);
 };

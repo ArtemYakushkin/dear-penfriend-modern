@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
-import Picker from '@emoji-mart/react';
-import data from '@emoji-mart/data';
+import EmojiPicker from 'emoji-picker-react';
 
 import { useAuthStore } from '../store/useAuthStore';
 import { submitComment } from '../utils/commentsUtils';
@@ -16,17 +15,7 @@ import Avatar from './Avatar';
 import Register from './Register';
 import Login from './Login';
 import { Container } from '../style/Container';
-import {
-	Form,
-	Wrap,
-	Textarea,
-	Error,
-	Options,
-	BtnEmoji,
-	BtnSubmit,
-	EmojiModal,
-	BtnUnReg,
-} from '../style/FormStyles';
+import { Form, Wrap, Textarea, Error, Options, BtnEmoji, BtnSubmit, EmojiModal, BtnUnReg } from '../style/FormStyles';
 
 const CommentForm = ({ postId }) => {
 	const user = useAuthStore((s) => s.user);
@@ -54,16 +43,8 @@ const CommentForm = ({ postId }) => {
 							photo={user?.photoURL}
 							name={user?.displayName}
 							style={{
-								width: isMobile
-									? '40px'
-									: isTablet
-									? '40px'
-									: '48px',
-								height: isMobile
-									? '40px'
-									: isTablet
-									? '40px'
-									: '48px',
+								width: isMobile ? '40px' : isTablet ? '40px' : '48px',
+								height: isMobile ? '40px' : isTablet ? '40px' : '48px',
 								flexShrink: '0',
 							}}
 						/>
@@ -91,45 +72,27 @@ const CommentForm = ({ postId }) => {
 							{error && <Error>{error}</Error>}
 
 							<Options>
-								<BtnEmoji
-									type="button"
-									onClick={() =>
-										setShowEmojiPicker(!showEmojiPicker)
-									}
-								>
+								<BtnEmoji type="button" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
 									<BsEmojiSmile size={24} />
 								</BtnEmoji>
 
 								<BtnSubmit type="submit" form="commentForm">
-									<IoSend
-										size={
-											isTablet || isMobile ? '24' : '36'
-										}
-									/>
+									<IoSend size={isTablet || isMobile ? '24' : '36'} />
 								</BtnSubmit>
 							</Options>
 
 							{showEmojiPicker && (
 								<EmojiModal ref={emojiPickerRef}>
-									<Picker
-										data={data}
-										onEmojiSelect={(emoji) =>
-											addEmoji(
-												emoji,
-												setText,
-												setShowEmojiPicker,
-											)
-										}
+									<EmojiPicker
 										theme="light"
+										onEmojiClick={(emojiData) => addEmoji(emojiData, setText, setShowEmojiPicker)}
 									/>
 								</EmojiModal>
 							)}
 						</Wrap>
 					</>
 				) : (
-					<BtnUnReg onClick={openRegister}>
-						Log in to comment
-					</BtnUnReg>
+					<BtnUnReg onClick={openRegister}>Log in to comment</BtnUnReg>
 				)}
 
 				{isRegisterModalOpen && (

@@ -28,11 +28,12 @@ import {
 
 const Login = ({ isVisible, onClose, openRegister, onCloseUnreg }) => {
 	const store = useLoginStore();
+	const loadRemembered = useLoginStore((s) => s.loadRemembered);
 	const { isMobile } = useResponsive();
 
 	useEffect(() => {
-		store.loadRemembered();
-	}, [store]);
+		loadRemembered();
+	}, [loadRemembered]);
 
 	const handleClose = () => {
 		store.reset();
