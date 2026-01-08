@@ -11,14 +11,14 @@ import { ThemeContext } from '../context/ThemeContext';
 
 import LogoBrand from './LogoBrand';
 import MenuNav from './MenuNav';
-import ButtonLg from './ButtonLg';
-import ButtonBurger from './ButtonBurger';
+import ButtonLg from './Buttons/ButtonLg';
+import ButtonBurger from './Buttons/ButtonBurger';
 import Register from './Register';
 import Login from './Login';
-import ButtonNotify from './ButtonNotify';
+import ButtonNotify from './Buttons/ButtonNotify';
 import Avatar from './Avatar';
-import DropdownNavbar from './DropdownNavbar';
-import ModalLogout from './ModalLogout';
+import DropdownNavbar from './Dropdowns/DropdownNavbar';
+import ModalLogout from './Modals/ModalLogout';
 import MobileMenu from './MobileMenu';
 
 import { Container } from '../style/Container';
@@ -105,9 +105,7 @@ const Navbar = () => {
 		openRegister,
 	} = useNavbarModals();
 
-	useBodyScrollLock(
-		isLoginModalOpen || isRegisterModalOpen || isMobileMenuOpen,
-	);
+	useBodyScrollLock(isLoginModalOpen || isRegisterModalOpen || isMobileMenuOpen);
 
 	const { isOpen, toggleDropdown, dropdownRef } = useDropdown();
 
@@ -142,10 +140,7 @@ const Navbar = () => {
 								setIsLogoutModalOpen={setIsLogoutModalOpen}
 							/>
 
-							<ButtonBurger
-								isMobileMenuOpen={isMobileMenuOpen}
-								toggleMobileMenu={toggleMobileMenu}
-							/>
+							<ButtonBurger isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
 						</Options>
 					) : (
 						<Auth>
@@ -170,10 +165,7 @@ const Navbar = () => {
 									border: '1px solid var(--color-accent)',
 								}}
 							/>
-							<ButtonBurger
-								isMobileMenuOpen={isMobileMenuOpen}
-								toggleMobileMenu={toggleMobileMenu}
-							/>
+							<ButtonBurger isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
 						</Auth>
 					)}
 				</Wrap>
@@ -208,9 +200,7 @@ const Navbar = () => {
 				/>
 			)}
 
-			{isLogoutModalOpen && (
-				<ModalLogout onClose={() => setIsLogoutModalOpen(false)} />
-			)}
+			{isLogoutModalOpen && <ModalLogout onClose={() => setIsLogoutModalOpen(false)} />}
 		</Section>
 	);
 };

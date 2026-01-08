@@ -1,58 +1,69 @@
 import { create } from 'zustand';
-import { sendMessage, deleteMessage, updateMessage, uploadMessageImage, fetchAuthorNickname } from '../api/messagesApi';
-import { isEnglishOnly } from '../utils/validation';
+import { sendMessageToDB, subscribeToMessages, deleteMessageFromDB, updateMessageInDB } from '../api/messagesApi';
 
-export const useMessagesStore = create((set, get) => ({
-	text: '',
-	image: null,
-	imageFile: null,
-	gif: null,
-	error: '',
-	authorNickname: '',
+import { uploadImage, sendNotification } from '../utils/messageFormUtils';
 
-	setText: (text) => set({ text }),
-	setGif: (gif) => set({ gif }),
-	setImagePreview: (image) => set({ image }),
-	clearForm: () =>
-		set({
-			text: '',
-			image: null,
-			imageFile: null,
-			gif: null,
-			error: '',
-		}),
+export const useMessagesStore = create((set) => ({
+	messages: [],
+	loading: false,
+	error: null,
 
-	loadAuthorNickname: async (authorId) => {
-		const nickname = await fetchAuthorNickname(authorId);
-		set({ authorNickname: nickname });
+	/* ================= SUBSCRIBE ================= */
+	subscribe: (authorId) => {
+		return subscribeToMessages(authorId, (messages) => {
+			set({ messages });
+		});
 	},
 
-	send: async ({ authorId, user }) => {
-		const { text, imageFile, gif } = get();
+	/* ================= SEND ================= */
+	sendMessage: async ({ authorId, user, text, imageFile, gif }) => {
+		set({ loading: true, error: null });
 
-		if (!text.trim() && !imageFile && !gif) {
-			set({ error: "You can't send an empty message." });
-			return;
+		try {
+			let imageUrl = null;
+			if (imageFile) {
+				imageUrl = await uploadImage(imageFile, user.uid);
+			}
+
+			await sendMessageToDB({
+				authorId,
+				senderId: user.uid,
+				senderNickname: user.displayName,
+				senderAvatar: user.photoURL,
+				message: text,
+				image: imageUrl,
+				gif,
+			});
+
+			await sendNotification(authorId, user);
+
+			set({ loading: false });
+		} catch (error) {
+			console.error(error);
+			set({ loading: false, error: 'Failed to send message' });
+			throw error;
 		}
+	},
 
-		if (text.trim() && !isEnglishOnly(text)) {
-			set({ error: 'Only English characters allowed.' });
-			return;
+	/* ================= DELETE ================= */
+	deleteMessage: async (messageId) => {
+		try {
+			await deleteMessageFromDB(messageId);
+		} catch (error) {
+			console.error('Delete error:', error);
+			throw error;
 		}
+	},
 
-		let imageURL = null;
-		if (imageFile) {
-			imageURL = await uploadMessageImage(imageFile, user.uid);
+	/* ================= UPDATE ================= */
+	updateMessage: async (messageId, newText) => {
+		if (!newText.trim()) return;
+
+		try {
+			await updateMessageInDB(messageId, newText);
+		} catch (error) {
+			console.error('Update error:', error);
+			throw error;
 		}
-
-		await sendMessage({
-			authorId,
-			user,
-			text,
-			image: imageURL,
-			gif,
-		});
-
-		get().clearForm();
 	},
 }));

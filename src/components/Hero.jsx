@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 
-import ButtonMain from './ButtonMain';
+import ButtonMain from './Buttons/ButtonMain';
 import { useResponsive } from '../hooks/useResponsive';
 import { ThemeContext } from '../context/ThemeContext';
 
@@ -187,9 +187,7 @@ const Hero = () => {
 					<Title>
 						Chat, <span>learn,</span> make friends
 					</Title>
-					<Text>
-						Read interesting posts, write your stories, and comment.
-					</Text>
+					<Text>Read interesting posts, write your stories, and comment.</Text>
 					<BtnBox>
 						<ButtonMain />
 					</BtnBox>

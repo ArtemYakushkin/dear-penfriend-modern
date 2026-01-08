@@ -21,6 +21,39 @@ export const Wrap = styled.div`
 	border-radius: 20px;
 `;
 
+export const Preview = styled.div`
+	width: 200px;
+	padding: 20px;
+	display: flex;
+	align-items: start;
+	gap: 8px;
+
+	img {
+		width: 100%;
+		height: auto;
+		border-radius: 6px;
+	}
+
+	@media (min-width: 768px) and (max-width: 1259px) {
+		width: 180px;
+		padding: 15px;
+	}
+
+	@media (max-width: 767px) {
+		width: 150px;
+		padding: 12px;
+	}
+`;
+
+export const BtnClose = styled.button`
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-black-change);
+`;
+
 export const Textarea = styled.textarea`
 	width: 100%;
 	height: 100px;
@@ -97,6 +130,17 @@ export const Options = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+`;
+
+export const Inner = styled.div`
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+
+	@media (max-width: 767px) {
+		gap: 6px;
+	}
 `;
 
 export const BtnEmoji = styled.button`

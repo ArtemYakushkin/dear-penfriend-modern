@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useRegisterStore } from '../store/useRegisterStore';
 
-import ButtonCloseModal from './ButtonCloseModal';
-import InputText from './InputText';
-import InputCountry from './InputCountry';
-import InputProf from './InputProf';
-import InputEmail from './InputEmail';
-import InputPassword from './InputPassword';
-import InputFile from './InputFile';
-import ButtonSubmit from './ButtonSubmit';
+import ButtonCloseModal from './Buttons/ButtonCloseModal';
+import InputText from './Inputs/InputText';
+import InputCountry from './Inputs/InputCountry';
+import InputProf from './Inputs/InputProf';
+import InputEmail from './Inputs/InputEmail';
+import InputPassword from './Inputs/InputPassword';
+import InputFile from './Inputs/InputFile';
+import ButtonSubmit from './Buttons/ButtonSubmit';
 import Loader from './Loader';
 
 import {
@@ -70,12 +70,7 @@ const Register = ({ onClose, isVisible, openLogin }) => {
 							<AuthBase>
 								<InputText
 									value={store.nickname}
-									onChange={(e) =>
-										store.setField(
-											'nickname',
-											e.target.value,
-										)
-									}
+									onChange={(e) => store.setField('nickname', e.target.value)}
 									errorMessage={store.errorMessage.nickname}
 									placeholder={'Nickname'}
 								/>
@@ -83,36 +78,19 @@ const Register = ({ onClose, isVisible, openLogin }) => {
 								<InputCountry
 									placeholder={'Country'}
 									value={store.country}
-									handleCountryChange={(e) =>
-										store.handleCountryChange(
-											e.target.value,
-										)
-									}
+									handleCountryChange={(e) => store.handleCountryChange(e.target.value)}
 									filteredCountries={store.filteredCountries}
-									showCountryDropdown={
-										store.showCountryDropdown
-									}
-									setShowCountryDropdown={
-										store.setShowCountryDropdown
-									}
-									setCountry={(v) =>
-										store.setField('country', v)
-									}
+									showCountryDropdown={store.showCountryDropdown}
+									setShowCountryDropdown={store.setShowCountryDropdown}
+									setCountry={(v) => store.setField('country', v)}
 									errorMessage={store.errorMessage.country}
 								/>
 
 								<InputProf
-									selectedProfession={
-										store.selectedProfession
-									}
+									selectedProfession={store.selectedProfession}
 									showDropdown={store.showDropdown}
 									professions={store.professions}
-									onToggle={() =>
-										store.setField(
-											'showDropdown',
-											!store.showDropdown,
-										)
-									}
+									onToggle={() => store.setField('showDropdown', !store.showDropdown)}
 									onSelect={store.selectProfession}
 									errorMessage={store.errorMessage.profession}
 								/>
@@ -120,43 +98,25 @@ const Register = ({ onClose, isVisible, openLogin }) => {
 								<InputEmail
 									placeholder={'Email'}
 									value={store.email}
-									onChange={(e) =>
-										store.setField('email', e.target.value)
-									}
+									onChange={(e) => store.setField('email', e.target.value)}
 									errorMessage={store.errorMessage.email}
 								/>
 
 								<InputPassword
 									placeholder={'Password (min. 6 characters)'}
 									value={store.password}
-									onChange={(e) =>
-										store.setField(
-											'password',
-											e.target.value,
-										)
-									}
+									onChange={(e) => store.setField('password', e.target.value)}
 									showPassword={store.showPassword}
-									togglePasswordVisibility={
-										store.togglePassword
-									}
+									togglePasswordVisibility={store.togglePassword}
 									errorMessage={store.errorMessage.password}
 								/>
 
 								<InputPassword
 									value={store.confirmPassword}
-									onChange={(e) =>
-										store.setField(
-											'confirmPassword',
-											e.target.value,
-										)
-									}
+									onChange={(e) => store.setField('confirmPassword', e.target.value)}
 									showPassword={store.showPassword}
-									togglePasswordVisibility={
-										store.togglePassword
-									}
-									errorMessage={
-										store.errorMessage.confirmPassword
-									}
+									togglePasswordVisibility={store.togglePassword}
+									errorMessage={store.errorMessage.confirmPassword}
 									placeholder={'Confirm password'}
 								/>
 							</AuthBase>
@@ -168,11 +128,7 @@ const Register = ({ onClose, isVisible, openLogin }) => {
 										const file = e.target.files?.[0];
 										if (!file) return;
 										const reader = new FileReader();
-										reader.onloadend = () =>
-											store.setAvatar(
-												file,
-												reader.result,
-											);
+										reader.onloadend = () => store.setAvatar(file, reader.result);
 										reader.readAsDataURL(file);
 									}}
 								/>
@@ -182,30 +138,18 @@ const Register = ({ onClose, isVisible, openLogin }) => {
 							</AuthSecondary>
 						</AuthWrap>
 
-						{store.successMessage && (
-							<AuthSuccess>{store.successMessage}</AuthSuccess>
-						)}
-						{store.error.general && (
-							<AuthError>{store.error.general}</AuthError>
-						)}
+						{store.successMessage && <AuthSuccess>{store.successMessage}</AuthSuccess>}
+						{store.error.general && <AuthError>{store.error.general}</AuthError>}
 
-						<ButtonSubmit
-							text="Register"
-							style={{ marginBottom: '30px' }}
-						/>
+						<ButtonSubmit text="Register" style={{ marginBottom: '30px' }} />
 
 						<AuthLinkBox>
-							<AuthLinkText>
-								Already have an account?
-							</AuthLinkText>
-							<AuthLinkTextAccent onClick={openLogin}>
-								Sign in
-							</AuthLinkTextAccent>
+							<AuthLinkText>Already have an account?</AuthLinkText>
+							<AuthLinkTextAccent onClick={openLogin}>Sign in</AuthLinkTextAccent>
 						</AuthLinkBox>
 
 						<AuthPrivacyText>
-							By clicking register, I agree to{' '}
-							<Link to="/privacy">Privacy Policy</Link>
+							By clicking register, I agree to <Link to="/privacy">Privacy Policy</Link>
 						</AuthPrivacyText>
 					</AuthScroll>
 				</AuthForm>

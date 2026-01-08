@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Register from './Register';
 import Login from './Login';
-import ButtonHigh from './ButtonHigh';
+import ButtonHigh from './Buttons/ButtonHigh';
 import poster from '../assets/Video/Cover_video.png';
 import video from '../assets/Video/Promo_Dear_Penfriend.mp4';
 import Vector1 from '../assets/Vectors/about-vector-1.png';
@@ -162,17 +162,10 @@ const AboutProject = () => {
 				<AboutTitle>About the project</AboutTitle>
 
 				<AboutVideoContainer>
-					<video
-						ref={videoRef}
-						src={video}
-						poster={poster}
-						controls={isPlaying}
-					/>
+					<video ref={videoRef} src={video} poster={poster} controls={isPlaying} />
 					{!isPlaying && (
 						<button onClick={handlePlay}>
-							<MdOutlinePlayCircleOutline
-								size={isMobile ? '60' : '100'}
-							/>
+							<MdOutlinePlayCircleOutline size={isMobile ? '60' : '100'} />
 						</button>
 					)}
 				</AboutVideoContainer>
@@ -186,10 +179,7 @@ const AboutProject = () => {
 							color: 'var(--color-accent-change)',
 						}}
 					/>
-					<ButtonHigh
-						text={'Register and start chatting'}
-						onClick={handleRegisterClick}
-					/>
+					<ButtonHigh text={'Register and start chatting'} onClick={handleRegisterClick} />
 				</AboutBtnBox>
 			</Container>
 

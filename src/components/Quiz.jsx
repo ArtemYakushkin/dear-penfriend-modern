@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import QuizSuccessMessage from './QuizSuccessMessage';
 import QuizFailMessage from './QuizFailMessage';
-import ModalQuiz from './ModalQuiz';
-import ModalUnregister from './ModalUnregister';
+import ModalQuiz from './Modals/ModalQuiz';
+import ModalUnregister from './Modals/ModalUnregister';
 
 const QuizWrap = styled.div`
 	padding: 30px;
@@ -97,9 +97,7 @@ const Quiz = ({ quizData, user, postId }) => {
 	const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
 	const [isAnswered, setIsAnswered] = useState(false);
 
-	const quizKey = `quiz-${postId}-${quizData.question.replace(/\s+/g, '-')}-${
-		user?.uid || 'guest'
-	}`;
+	const quizKey = `quiz-${postId}-${quizData.question.replace(/\s+/g, '-')}-${user?.uid || 'guest'}`;
 
 	useEffect(() => {
 		const stored = localStorage.getItem(quizKey);
@@ -155,14 +153,8 @@ const Quiz = ({ quizData, user, postId }) => {
 					<AnswerItem
 						key={index}
 						className={`quiz-answer ${
-							isAnswered && index === selectedAnswer
-								? 'quiz-answer-selected'
-								: ''
-						} ${
-							isAnswered && index !== selectedAnswer
-								? 'quiz-answer-disabled'
-								: ''
-						}`}
+							isAnswered && index === selectedAnswer ? 'quiz-answer-selected' : ''
+						} ${isAnswered && index !== selectedAnswer ? 'quiz-answer-disabled' : ''}`}
 						onClick={() => handleAnswerClick(index)}
 					>
 						{answer}
@@ -170,15 +162,8 @@ const Quiz = ({ quizData, user, postId }) => {
 				))}
 			</Answers>
 
-			<ModalQuiz
-				isOpen={isQuizModalOpen}
-				onClose={() => setIsQuizModalOpen(false)}
-				message={modalMessage}
-			/>
-			<ModalUnregister
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-			/>
+			<ModalQuiz isOpen={isQuizModalOpen} onClose={() => setIsQuizModalOpen(false)} message={modalMessage} />
+			<ModalUnregister isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 		</QuizWrap>
 	);
 };

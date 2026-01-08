@@ -9,7 +9,7 @@ import { LuSun, LuMoon } from 'react-icons/lu';
 import { useAuthStore } from '../store/useAuthStore';
 import { ThemeContext } from '../context/ThemeContext';
 
-import ModalLogout from './ModalLogout';
+import ModalLogout from './Modals/ModalLogout';
 
 const Mobile = styled.div`
 	position: fixed;
@@ -25,8 +25,7 @@ const Mobile = styled.div`
 	border-bottom-right-radius: 10px;
 	opacity: 0;
 	transform: translateY(-10px);
-	transition: max-height 0.4s ease-in-out, opacity 0.3s ease,
-		transform 0.3s ease;
+	transition: max-height 0.4s ease-in-out, opacity 0.3s ease, transform 0.3s ease;
 
 	&.mobile-open {
 		max-height: 350px;
@@ -95,11 +94,7 @@ const MobileMenu = ({ isOpen, closeMenu, openLogout, modalLogout }) => {
 						</MobileItem>
 						<MobileItem onClick={toggleTheme}>
 							<MobileLink>
-								{isDarkTheme ? (
-									<LuSun size={24} />
-								) : (
-									<LuMoon size={24} />
-								)}
+								{isDarkTheme ? <LuSun size={24} /> : <LuMoon size={24} />}
 								<p>Change theme to dark</p>
 							</MobileLink>
 						</MobileItem>
@@ -111,10 +106,7 @@ const MobileMenu = ({ isOpen, closeMenu, openLogout, modalLogout }) => {
 						</MobileItem>
 						<MobileItem>
 							<MobileLink onClick={handleExit}>
-								<FiLogOut
-									size={24}
-									style={{ transform: 'rotate(180deg)' }}
-								/>
+								<FiLogOut size={24} style={{ transform: 'rotate(180deg)' }} />
 								<p>Logout</p>
 							</MobileLink>
 						</MobileItem>
@@ -131,11 +123,7 @@ const MobileMenu = ({ isOpen, closeMenu, openLogout, modalLogout }) => {
 						</MobileItem>
 						<MobileItem onClick={toggleTheme}>
 							<MobileLink>
-								{isDarkTheme ? (
-									<LuSun size={24} />
-								) : (
-									<LuMoon size={24} />
-								)}
+								{isDarkTheme ? <LuSun size={24} /> : <LuMoon size={24} />}
 								<p>Change theme to dark</p>
 							</MobileLink>
 						</MobileItem>

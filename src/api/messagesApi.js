@@ -1,35 +1,43 @@
-import { addDoc, collection, serverTimestamp, deleteDoc, updateDoc, doc, getDoc } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import {
+	addDoc,
+	collection,
+	serverTimestamp,
+	query,
+	where,
+	orderBy,
+	onSnapshot,
+	doc,
+	deleteDoc,
+	updateDoc,
+} from 'firebase/firestore';
 import { db } from '../firebase';
 
-export const uploadMessageImage = async (file, userId) => {
-	const storage = getStorage();
-	const storageRef = ref(storage, `messages/${userId}-${Date.now()}-${file.name}`);
-	await uploadBytes(storageRef, file);
-	return getDownloadURL(storageRef);
-};
-
-export const sendMessage = async ({ authorId, user, text, image, gif }) => {
+export const sendMessageToDB = async (data) => {
 	return addDoc(collection(db, 'authorMessages'), {
-		authorId,
-		senderId: user.uid,
-		senderNickname: user.displayName,
-		senderAvatar: user.photoURL,
-		message: text,
-		image: image || null,
-		gif: gif || null,
+		...data,
 		createdAt: serverTimestamp(),
 	});
 };
 
-export const deleteMessage = (id) => deleteDoc(doc(db, 'authorMessages', id));
+export const subscribeToMessages = (authorId, callback) => {
+	const q = query(collection(db, 'authorMessages'), where('authorId', '==', authorId), orderBy('createdAt', 'desc'));
 
-export const updateMessage = (id, text) =>
-	updateDoc(doc(db, 'authorMessages', id), {
-		message: text.trim(),
+	return onSnapshot(q, (snapshot) => {
+		callback(
+			snapshot.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			})),
+		);
 	});
+};
 
-export const fetchAuthorNickname = async (authorId) => {
-	const snap = await getDoc(doc(db, 'users', authorId));
-	return snap.exists() ? snap.data().nickname : 'Unknown Author';
+export const deleteMessageFromDB = async (messageId) => {
+	return deleteDoc(doc(db, 'authorMessages', messageId));
+};
+
+export const updateMessageInDB = async (messageId, newText) => {
+	return updateDoc(doc(db, 'authorMessages', messageId), {
+		message: newText.trim(),
+	});
 };

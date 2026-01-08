@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useAuthStore } from '../store/useAuthStore';
 import { useProfilePage } from '../hooks/useProfilePage';
 import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
-import CardProfile from '../components/CardProfile';
+import CardProfile from '../components/CardProfile/CardProfile';
 import Tabs from '../components/Tabs';
 import AboutMe from '../components/AboutMe';
-import ModalEditProfile from '../components/ModalEditProfile';
-import ModalUpdateCredentials from '../components/ModalUpdateCredentials';
+import ModalEditProfile from '../components/Modals/ModalEditProfile';
+import ModalUpdateCredentials from '../components/Modals/ModalUpdateCredentials';
 import PopularPosts from '../components/PopularPosts';
+import MessagesList from '../components/Messages/MessagesList';
+import InfoBoard from '../components/InfoBoard';
+import { Container } from '../style/Container';
 
 const ProfileWrap = styled.div`
 	padding-bottom: 120px;
@@ -38,6 +41,10 @@ const ProfilePage = () => {
 	const [isModalSetting, setIsModalSetting] = useState(false);
 
 	useBodyScrollLock(isModalEditProfile || isModalSetting);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<>
@@ -73,14 +80,13 @@ const ProfilePage = () => {
 					)}
 
 					{activeTab === 'message' && (
-						<div>Messages</div>
-						// <div className="container">
-						// 	{messages.length > 0 ? (
-						// 		<MessagesList authorId={user.uid} showReplyForm={true} isOwnerPage={true} />
-						// 	) : (
-						// 		<InfoBoard message={'No messages.'} />
-						// 	)}
-						// </div>
+						<Container>
+							{state.messages.length > 0 ? (
+								<MessagesList authorId={user.uid} showReplyForm={true} isOwnerPage={true} />
+							) : (
+								<InfoBoard message={'No messages.'} />
+							)}
+						</Container>
 					)}
 
 					{/* {activeTab === 'posts' && <ProfilePosts />} */}

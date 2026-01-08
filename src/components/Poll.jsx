@@ -5,7 +5,7 @@ import { fetchPollVotes } from '../api/fetchPollVotes';
 import { handlePollVote } from '../api/handlePollVote';
 import { getPollPercentage } from '../utils/getPollPercentage';
 
-import ModalUnregister from './ModalUnregister';
+import ModalUnregister from './Modals/ModalUnregister';
 
 const PollWrap = styled.div`
 	padding: 30px;
@@ -162,9 +162,7 @@ const Poll = ({ pollData, postId, user }) => {
 	const [pollVotes, setPollVotes] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const pollKey = `poll-${postId}-${pollData.question.replace(/\s+/g, '-')}-${
-		user?.uid || 'guest'
-	}`;
+	const pollKey = `poll-${postId}-${pollData.question.replace(/\s+/g, '-')}-${user?.uid || 'guest'}`;
 
 	useEffect(() => {
 		const stored = localStorage.getItem(pollKey);
@@ -189,9 +187,7 @@ const Poll = ({ pollData, postId, user }) => {
 					<Answer key={index}>
 						<Button
 							className={`poll-answer-button ${
-								selectedAnswer === index
-									? 'poll-answer-button-selected'
-									: ''
+								selectedAnswer === index ? 'poll-answer-button-selected' : ''
 							}`}
 							onClick={() =>
 								handlePollVote({
@@ -215,26 +211,19 @@ const Poll = ({ pollData, postId, user }) => {
 							<ProgressBar>
 								<Progress
 									style={{
-										width: `${getPollPercentage(
-											pollVotes,
-											index,
-										)}%`,
+										width: `${getPollPercentage(pollVotes, index)}%`,
 									}}
 								/>
 							</ProgressBar>
 							<Text>
-								{pollVotes[index]} votes (
-								{getPollPercentage(pollVotes, index)}%)
+								{pollVotes[index]} votes ({getPollPercentage(pollVotes, index)}%)
 							</Text>
 						</Votes>
 					</Answer>
 				))}
 			</AnswerBlok>
 
-			<ModalUnregister
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-			/>
+			<ModalUnregister isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 		</PollWrap>
 	);
 };

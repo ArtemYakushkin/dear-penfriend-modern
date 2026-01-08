@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import ButtonCloseModal from './ButtonCloseModal';
-import InputEmail from './InputEmail';
-import InputPassword from './InputPassword';
-import InputCheck from './InputCheck';
-import ButtonSubmit from './ButtonSubmit';
+import ButtonCloseModal from './Buttons/ButtonCloseModal';
+import InputEmail from './Inputs/InputEmail';
+import InputPassword from './Inputs/InputPassword';
+import InputCheck from './Inputs/InputCheck';
+import ButtonSubmit from './Buttons/ButtonSubmit';
 import Loader from './Loader';
 
 import { useLoginStore } from '../store/useLoginStore';
@@ -61,18 +61,14 @@ const Login = ({ isVisible, onClose, openRegister, onCloseUnreg }) => {
 					<AuthBase style={{ width: '100%', marginBottom: '30px' }}>
 						<InputEmail
 							value={store.email}
-							onChange={(e) =>
-								store.setField('email', e.target.value)
-							}
+							onChange={(e) => store.setField('email', e.target.value)}
 							errorMessage={store.errorMessage.email}
 							placeholder={'Email'}
 						/>
 
 						<InputPassword
 							value={store.password}
-							onChange={(e) =>
-								store.setField('password', e.target.value)
-							}
+							onChange={(e) => store.setField('password', e.target.value)}
 							showPassword={store.showPassword}
 							togglePasswordVisibility={store.togglePassword}
 							errorMessage={store.errorMessage.password}
@@ -82,27 +78,16 @@ const Login = ({ isVisible, onClose, openRegister, onCloseUnreg }) => {
 					<AuthRemember>
 						<InputCheck
 							rememberMe={store.rememberMe}
-							setRememberMe={(v) =>
-								store.setField('rememberMe', v)
-							}
+							setRememberMe={(v) => store.setField('rememberMe', v)}
 						/>
-						<AuthForgot onClick={() => store.setView('reset')}>
-							Forgot your password?
-						</AuthForgot>
+						<AuthForgot onClick={() => store.setView('reset')}>Forgot your password?</AuthForgot>
 					</AuthRemember>
-					{store.successMessage && (
-						<AuthSuccess>{store.successMessage}</AuthSuccess>
-					)}
+					{store.successMessage && <AuthSuccess>{store.successMessage}</AuthSuccess>}
 					{store.error && <AuthError>{store.error}</AuthError>}
-					<ButtonSubmit
-						text="Sign in"
-						style={{ marginBottom: '30px' }}
-					/>
+					<ButtonSubmit text="Sign in" style={{ marginBottom: '30px' }} />
 					<AuthLinkBox>
 						<AuthLinkText>Don't have an account?</AuthLinkText>
-						<AuthLinkTextAccent onClick={openRegister}>
-							Register
-						</AuthLinkTextAccent>
+						<AuthLinkTextAccent onClick={openRegister}>Register</AuthLinkTextAccent>
 					</AuthLinkBox>{' '}
 				</AuthForm>
 			) : store.view === 'reset' ? (
@@ -121,17 +106,12 @@ const Login = ({ isVisible, onClose, openRegister, onCloseUnreg }) => {
 					<AuthBase style={{ width: '100%', marginBottom: '30px' }}>
 						<InputEmail
 							value={store.email}
-							onChange={(e) =>
-								store.setField('email', e.target.value)
-							}
+							onChange={(e) => store.setField('email', e.target.value)}
 							errorMessage={store.errorMessage.email}
 							placeholder={'Enter your email'}
 						/>
 					</AuthBase>
-					<ButtonSubmit
-						text="Send reset email"
-						onClick={store.resetPassword}
-					/>
+					<ButtonSubmit text="Send reset email" onClick={store.resetPassword} />
 				</AuthForm>
 			) : (
 				<AuthForm
@@ -147,30 +127,17 @@ const Login = ({ isVisible, onClose, openRegister, onCloseUnreg }) => {
 				>
 					<AuthTitle>Password recovery instructions</AuthTitle>
 					<AuthRecoverList>
+						<AuthRecoverItem>1. A link to reset your password has been sent to your email.</AuthRecoverItem>
+						<AuthRecoverItem>2. Follow this link and enter a new password.</AuthRecoverItem>
 						<AuthRecoverItem>
-							1. A link to reset your password has been sent to
-							your email.
+							3. Reopen the window to log into your account and enter a new password.
 						</AuthRecoverItem>
+						<AuthRecoverItem>4. Voila. You are back with us.</AuthRecoverItem>
 						<AuthRecoverItem>
-							2. Follow this link and enter a new password.
-						</AuthRecoverItem>
-						<AuthRecoverItem>
-							3. Reopen the window to log into your account and
-							enter a new password.
-						</AuthRecoverItem>
-						<AuthRecoverItem>
-							4. Voila. You are back with us.
-						</AuthRecoverItem>
-						<AuthRecoverItem>
-							5. If you can't find the email in your inbox, please
-							check your spam folder.
+							5. If you can't find the email in your inbox, please check your spam folder.
 						</AuthRecoverItem>
 					</AuthRecoverList>
-					<ButtonSubmit
-						text={'Close'}
-						onClick={handleClose}
-						style={{ marginBottom: '0px' }}
-					/>
+					<ButtonSubmit text={'Close'} onClick={handleClose} style={{ marginBottom: '0px' }} />
 				</AuthForm>
 			)}
 		</Auth>

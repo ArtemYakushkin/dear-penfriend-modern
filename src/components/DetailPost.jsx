@@ -8,14 +8,14 @@ import { useResponsive } from '../hooks/useResponsive';
 import { usePostsStore } from '../store/usePostsStore';
 
 import Avatar from './Avatar';
-import ButtonLg from './ButtonLg';
+import ButtonLg from './Buttons/ButtonLg';
 import MediaCarousel from './MediaCarousel';
 import Poll from './Poll';
 import Quiz from './Quiz';
-import ButtonHigh from './ButtonHigh';
-import CommentForm from './CommentForm';
-import CommentsList from './CommentsList';
-import ModalUnregister from './ModalUnregister';
+import ButtonHigh from './Buttons/ButtonHigh';
+import CommentForm from './Comments/CommentForm';
+import CommentsList from './Comments/CommentsList';
+import ModalUnregister from './Modals/ModalUnregister';
 import { Container } from '../style/Container';
 
 import { HiArrowLongLeft } from 'react-icons/hi2';
@@ -402,9 +402,7 @@ const DetailPost = ({ post, postId, user, author }) => {
 	const { isMobile, isTablet } = useResponsive();
 	const navigate = useNavigate();
 	const handleLike = usePostsStore((s) => s.handleLike);
-	const { liked, likesCount } = usePostsStore(
-		(s) => s.likesState[post.id],
-	) || {
+	const { liked, likesCount } = usePostsStore((s) => s.likesState[post.id]) || {
 		liked: false,
 		likesCount: post.likes?.length || 0,
 	};
@@ -431,24 +429,17 @@ const DetailPost = ({ post, postId, user, author }) => {
 								</BtnBack>
 								{user?.uid === post?.author?.uid && (
 									<ButtonLg
-										onClick={() =>
-											navigate(`/edit-post/${postId}`)
-										}
+										onClick={() => navigate(`/edit-post/${postId}`)}
 										text={'Edit post'}
 										style={{
 											color: 'var(--color-white)',
-											backgroundColor:
-												'var(--color-accent)',
+											backgroundColor: 'var(--color-accent)',
 										}}
 									/>
 								)}
 							</Options>
 
-							<AuthorBox
-								onClick={() =>
-									navigate(`/author/${post.author.uid}`)
-								}
-							>
+							<AuthorBox onClick={() => navigate(`/author/${post.author.uid}`)}>
 								<Avatar
 									photo={author?.avatar}
 									name={author?.nickname}
@@ -458,14 +449,8 @@ const DetailPost = ({ post, postId, user, author }) => {
 									}}
 								/>
 								<div>
-									<Author>
-										{author?.nickname || 'Unknown Author'}
-									</Author>
-									<DateCreate>
-										{new Date(
-											post.createdAt,
-										).toLocaleDateString()}
-									</DateCreate>
+									<Author>{author?.nickname || 'Unknown Author'}</Author>
+									<DateCreate>{new Date(post.createdAt).toLocaleDateString()}</DateCreate>
 								</div>
 							</AuthorBox>
 
@@ -477,10 +462,7 @@ const DetailPost = ({ post, postId, user, author }) => {
 								<MediaCarousel media={post.media} />
 							) : post.media[0].includes('.mp4') ? (
 								<video controls>
-									<source
-										src={post.media[0]}
-										type="video/mp4"
-									/>
+									<source src={post.media[0]} type="video/mp4" />
 									Your browser does not support video.
 								</video>
 							) : (
@@ -511,21 +493,10 @@ const DetailPost = ({ post, postId, user, author }) => {
 
 						<Exam>
 							<Container>
-								{post.quiz &&
-									post.quiz.question &&
-									post.quiz.answers && (
-										<Quiz
-											quizData={post.quiz}
-											user={user}
-										/>
-									)}
-								{post.poll && (
-									<Poll
-										pollData={post.poll}
-										postId={postId}
-										user={user}
-									/>
+								{post.quiz && post.quiz.question && post.quiz.answers && (
+									<Quiz quizData={post.quiz} user={user} />
 								)}
+								{post.poll && <Poll pollData={post.poll} postId={postId} user={user} />}
 							</Container>
 						</Exam>
 
@@ -539,9 +510,7 @@ const DetailPost = ({ post, postId, user, author }) => {
 							<Activity>
 								<IconsBox>
 									<Icon
-										onClick={() =>
-											handleLike(post.id, setModalOpenId)
-										}
+										onClick={() => handleLike(post.id, setModalOpenId)}
 										style={{ cursor: 'pointer' }}
 									>
 										{liked ? (
@@ -577,26 +546,17 @@ const DetailPost = ({ post, postId, user, author }) => {
 												color: 'var(--color-black-change)',
 											}}
 										/>
-										<span>
-											{post.comments?.length || 0}
-										</span>
+										<span>{post.comments?.length || 0}</span>
 									</Icon>
 								</IconsBox>
 								<BtnSave
 									onClick={() => savePost(post.id)}
 									disabled={!user || isSaved}
 									style={{
-										cursor:
-											!user || isSaved
-												? 'not-allowed'
-												: 'pointer',
+										cursor: !user || isSaved ? 'not-allowed' : 'pointer',
 									}}
 								>
-									{!user || isSaved ? (
-										<FaBookmark size={24} />
-									) : (
-										<FaRegBookmark size={24} />
-									)}
+									{!user || isSaved ? <FaBookmark size={24} /> : <FaRegBookmark size={24} />}
 								</BtnSave>
 							</Activity>
 						</Container>
@@ -625,11 +585,7 @@ const DetailPost = ({ post, postId, user, author }) => {
 				<Container>
 					<Wrap>
 						<Header>
-							<AuthorBox
-								onClick={() =>
-									navigate(`/author/${post.author.uid}`)
-								}
-							>
+							<AuthorBox onClick={() => navigate(`/author/${post.author.uid}`)}>
 								<Avatar
 									photo={author?.avatar}
 									name={author?.nickname}
@@ -639,35 +595,22 @@ const DetailPost = ({ post, postId, user, author }) => {
 									}}
 								/>
 								<div>
-									<Author>
-										{author?.nickname || 'Unknown Author'}
-									</Author>
-									<DateCreate>
-										{new Date(
-											post.createdAt,
-										).toLocaleDateString()}
-									</DateCreate>
+									<Author>{author?.nickname || 'Unknown Author'}</Author>
+									<DateCreate>{new Date(post.createdAt).toLocaleDateString()}</DateCreate>
 								</div>
 							</AuthorBox>
 							<Options>
 								<BtnBack onClick={() => navigate(-1)}>
-									{isTablet ? (
-										<HiArrowLongLeft size={24} />
-									) : (
-										<HiArrowLongLeft size={28} />
-									)}
+									{isTablet ? <HiArrowLongLeft size={24} /> : <HiArrowLongLeft size={28} />}
 									Go back
 								</BtnBack>
 								{user?.uid === post?.author?.uid && (
 									<ButtonLg
-										onClick={() =>
-											navigate(`/edit-post/${postId}`)
-										}
+										onClick={() => navigate(`/edit-post/${postId}`)}
 										text={'Edit post'}
 										style={{
 											color: 'var(--color-white)',
-											backgroundColor:
-												'var(--color-accent)',
+											backgroundColor: 'var(--color-accent)',
 										}}
 									/>
 								)}
@@ -681,10 +624,7 @@ const DetailPost = ({ post, postId, user, author }) => {
 								<MediaCarousel media={post.media} />
 							) : post.media[0].includes('.mp4') ? (
 								<video controls>
-									<source
-										src={post.media[0]}
-										type="video/mp4"
-									/>
+									<source src={post.media[0]} type="video/mp4" />
 									Your browser does not support video.
 								</video>
 							) : (
@@ -712,18 +652,10 @@ const DetailPost = ({ post, postId, user, author }) => {
 						</Text>
 
 						<Exam>
-							{post.quiz &&
-								post.quiz.question &&
-								post.quiz.answers && (
-									<Quiz quizData={post.quiz} user={user} />
-								)}
-							{post.poll && (
-								<Poll
-									pollData={post.poll}
-									postId={postId}
-									user={user}
-								/>
+							{post.quiz && post.quiz.question && post.quiz.answers && (
+								<Quiz quizData={post.quiz} user={user} />
 							)}
+							{post.poll && <Poll pollData={post.poll} postId={postId} user={user} />}
 						</Exam>
 
 						<Border>
@@ -732,12 +664,7 @@ const DetailPost = ({ post, postId, user, author }) => {
 
 						<Activity>
 							<IconsBox>
-								<Icon
-									onClick={() =>
-										handleLike(post.id, setModalOpenId)
-									}
-									style={{ cursor: 'pointer' }}
-								>
+								<Icon onClick={() => handleLike(post.id, setModalOpenId)} style={{ cursor: 'pointer' }}>
 									{liked ? (
 										<FaHeart
 											size={24}
@@ -777,14 +704,8 @@ const DetailPost = ({ post, postId, user, author }) => {
 
 							<ViewBox>
 								<BtnView onClick={toggleCommentsVisibility}>
-									{commentsVisible
-										? 'Hide comments'
-										: 'View comments'}
-									{commentsVisible ? (
-										<IoMdArrowDropup />
-									) : (
-										<IoMdArrowDropdown />
-									)}
+									{commentsVisible ? 'Hide comments' : 'View comments'}
+									{commentsVisible ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
 								</BtnView>
 							</ViewBox>
 
@@ -792,17 +713,10 @@ const DetailPost = ({ post, postId, user, author }) => {
 								onClick={() => savePost(post.id)}
 								disabled={!user || isSaved}
 								style={{
-									cursor:
-										!user || isSaved
-											? 'not-allowed'
-											: 'pointer',
+									cursor: !user || isSaved ? 'not-allowed' : 'pointer',
 								}}
 							>
-								{!user || isSaved ? (
-									<FaBookmark size={24} />
-								) : (
-									<FaRegBookmark size={24} />
-								)}
+								{!user || isSaved ? <FaBookmark size={24} /> : <FaRegBookmark size={24} />}
 							</BtnSave>
 						</Activity>
 
@@ -843,10 +757,7 @@ const DetailPost = ({ post, postId, user, author }) => {
 				</Container>
 			)}
 
-			<ModalUnregister
-				isOpen={modalOpenId === post.id}
-				onClose={() => setModalOpenId(null)}
-			/>
+			<ModalUnregister isOpen={modalOpenId === post.id} onClose={() => setModalOpenId(null)} />
 		</>
 	);
 };
