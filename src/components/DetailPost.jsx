@@ -11,7 +11,7 @@ import Avatar from './Avatar';
 import ButtonLg from './Buttons/ButtonLg';
 import MediaCarousel from './MediaCarousel';
 import Poll from './Poll';
-import Quiz from './Quiz';
+import Quiz from './Quiz/Quiz';
 import ButtonHigh from './Buttons/ButtonHigh';
 import CommentForm from './Comments/CommentForm';
 import CommentsList from './Comments/CommentsList';

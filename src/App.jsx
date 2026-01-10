@@ -16,6 +16,7 @@ import PostDetailsPage from './pages/PostDetailsPage';
 import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
 import AuthorPage from './pages/AuthorPage';
+import CreatePostPage from './pages/CreatePostPage';
 // import Loader from './components/Loader';
 import Footer from './components/Footer';
 
@@ -57,6 +58,7 @@ const App = () => {
 				<Route path="/about" element={<AboutPage />} />
 				<Route path="/profile" element={<ProfilePage />} />
 				<Route path="/author/:uid" element={<AuthorPage />} />
+				<Route path="/create" element={<CreatePostPage />} />
 			</Routes>
 
 			<Footer />

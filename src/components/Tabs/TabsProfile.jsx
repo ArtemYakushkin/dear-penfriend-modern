@@ -3,11 +3,11 @@ import { HiOutlineClipboardDocumentList } from 'react-icons/hi2';
 import { LiaIdCardSolid } from 'react-icons/lia';
 import { BiMessageRoundedDots } from 'react-icons/bi';
 
-import { useResponsive } from '../hooks/useResponsive';
-import { Container } from '../style/Container';
-import { Wrap, Btn } from '../style/TabsStyles';
+import { useResponsive } from '../../hooks/useResponsive';
+import { Container } from '../../style/Container';
+import { Wrap, Btn } from '../../style/TabsStyles';
 
-const Tabs = ({ activeTab, setActiveTab, postCount }) => {
+const TabsProfile = ({ activeTab, setActiveTab, postCount }) => {
 	const { isMobile } = useResponsive();
 
 	return (
@@ -38,4 +38,4 @@ const Tabs = ({ activeTab, setActiveTab, postCount }) => {
 	);
 };
 
-export default Tabs;
+export default TabsProfile;

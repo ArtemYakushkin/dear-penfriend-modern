@@ -207,7 +207,7 @@ const CardProfileMobile = ({
 							}}
 						/>
 						{isAllowed && (
-							<Link to="/create-post">
+							<Link to="/create">
 								<ButtonLg
 									text={'Create a post'}
 									style={{

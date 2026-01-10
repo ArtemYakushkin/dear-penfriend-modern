@@ -7,7 +7,7 @@ import { fetchAuthorPosts } from '../api/authorApi';
 import { stripHtml } from '../utils/textUtils';
 import Loader from '../components/Loader';
 import CardProfile from '../components/CardProfile/CardProfile';
-import TabsAuthor from '../components/TabsAuthor';
+import TabsAuthor from '../components/Tabs/TabsAuthor';
 import AboutAuthor from '../components/AboutAuthor';
 
 const ProfileWrap = styled.div`
@@ -29,6 +29,8 @@ const AuthorPage = () => {
 	const author = authors[uid];
 	const [posts, setPosts] = useState([]);
 	const [activeTab, setActiveTab] = useState(localStorage.getItem('activeTab') || 'about');
+
+	console.log(posts);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);

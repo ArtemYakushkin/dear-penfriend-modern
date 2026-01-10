@@ -1,13 +1,4 @@
-import {
-	doc,
-	getDoc,
-	updateDoc,
-	collection,
-	query,
-	where,
-	onSnapshot,
-	orderBy,
-} from 'firebase/firestore';
+import { doc, getDoc, updateDoc, collection, query, where, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export const getUserProfile = async (userId) => {
@@ -16,18 +7,16 @@ export const getUserProfile = async (userId) => {
 	return snap.exists() ? snap.data() : null;
 };
 
-export const getUserPostCount = async (userId) => {
-	const ref = doc(db, 'users', userId);
-	const snap = await getDoc(ref);
-	return snap.exists() ? snap.data().createdPosts?.length || 0 : 0;
+export const subscribeToUserPostCount = (userId, callback) => {
+	const q = query(collection(db, 'posts'), where('author.uid', '==', userId));
+
+	return onSnapshot(q, (snapshot) => {
+		callback(snapshot.size);
+	});
 };
 
 export const subscribeToAuthorMessages = (userId, callback) => {
-	const q = query(
-		collection(db, 'authorMessages'),
-		where('authorId', '==', userId),
-		orderBy('createdAt', 'desc'),
-	);
+	const q = query(collection(db, 'authorMessages'), where('authorId', '==', userId), orderBy('createdAt', 'desc'));
 
 	return onSnapshot(q, (snapshot) => {
 		callback(snapshot.docs.map((d) => ({ id: d.id, ...d.data() })));

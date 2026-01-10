@@ -1,5 +1,5 @@
-import { useResponsive } from '../hooks/useResponsive';
-import Avatar from './Avatar';
+import { useResponsive } from '../../hooks/useResponsive';
+import Avatar from '../Avatar';
 import {
 	Grid,
 	GridHeader,
@@ -15,7 +15,7 @@ import {
 	GridFooter,
 	GridIconBox,
 	GridIcon,
-} from '../style/GridStyles';
+} from '../../style/GridStyles';
 
 import { FaRegHeart } from 'react-icons/fa';
 import { FiEye } from 'react-icons/fi';
@@ -40,20 +40,12 @@ const PopularCard = ({ post, author, onClick }) => {
 					style={{
 						width: isMobile ? '40px' : isTablet ? '40px' : '63px',
 						height: isMobile ? '40px' : isTablet ? '40px' : '63px',
-						marginRight: isMobile
-							? '6px'
-							: isTablet
-							? '6px'
-							: '15px',
+						marginRight: isMobile ? '6px' : isTablet ? '6px' : '15px',
 					}}
 				/>
 				<div className="grid-info-post">
-					<GridNickname>
-						{author?.nickname || 'Unknown Author'}
-					</GridNickname>
-					<GridDate>
-						{new Date(post.createdAt).toLocaleDateString()}
-					</GridDate>
+					<GridNickname>{author?.nickname || 'Unknown Author'}</GridNickname>
+					<GridDate>{new Date(post.createdAt).toLocaleDateString()}</GridDate>
 				</div>
 			</GridHeader>
 
@@ -83,24 +75,15 @@ const PopularCard = ({ post, author, onClick }) => {
 				<GridFooter>
 					<GridIconBox>
 						<GridIcon>
-							<FaRegHeart
-								size={24}
-								color="var(--color-black-change)"
-							/>
+							<FaRegHeart size={24} color="var(--color-black-change)" />
 							<span>{post.likes.length}</span>
 						</GridIcon>
 						<GridIcon>
-							<FiEye
-								size={24}
-								color="var(--color-black-change)"
-							/>
+							<FiEye size={24} color="var(--color-black-change)" />
 							<span>{post.views}</span>
 						</GridIcon>
 						<GridIcon>
-							<BiComment
-								size={24}
-								color="var(--color-black-change)"
-							/>
+							<BiComment size={24} color="var(--color-black-change)" />
 							<span>{post.comments?.length || 0}</span>
 						</GridIcon>
 					</GridIconBox>

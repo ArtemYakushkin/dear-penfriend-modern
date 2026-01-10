@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import instagram from '../assets/SocialIcon/instagram.png';
-import telegram from '../assets/SocialIcon/telegram.png';
-import linkedin from '../assets/SocialIcon/linkedin.png';
-import Anna from '../assets/Team/Anna.png';
+import instagram from '../../assets/SocialIcon/instagram.png';
+import telegram from '../../assets/SocialIcon/telegram.png';
+import linkedin from '../../assets/SocialIcon/linkedin.png';
+import Anna from '../../assets/Team/Anna.png';
 
 const Item = styled.div`
 	min-width: 282px;
@@ -161,16 +161,11 @@ const TeamAnna = () => {
 			</Image>
 			<Name>Anna Yakushkina</Name>
 			<Description>
-				Project Author. English teacher and methodologist. Creates posts
-				and ideas for students on this website.
+				Project Author. English teacher and methodologist. Creates posts and ideas for students on this website.
 			</Description>
 			<Contacts>
 				<SubTitle>Contacts:</SubTitle>
-				<a
-					href="https://www.linkedin.com/in/anna-yakushkina-3011202a9"
-					target="_blank"
-					rel="noreferrer"
-				>
+				<a href="https://www.linkedin.com/in/anna-yakushkina-3011202a9" target="_blank" rel="noreferrer">
 					<img src={linkedin} alt="" />
 				</a>
 				<a
@@ -180,11 +175,7 @@ const TeamAnna = () => {
 				>
 					<img src={instagram} alt="" />
 				</a>
-				<a
-					href="tg://resolve?domain=AnnaYakushkina"
-					target="_blank"
-					rel="noreferrer"
-				>
+				<a href="tg://resolve?domain=AnnaYakushkina" target="_blank" rel="noreferrer">
 					<img src={telegram} alt="" />
 				</a>
 			</Contacts>

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import SliderAvatar from './SliderAvatar';
-import slide1 from '../assets/Slider/slide1.png';
-import slide2 from '../assets/Slider/slide2.png';
-import slide3 from '../assets/Slider/slide3.png';
-import slide4 from '../assets/Slider/slide4.png';
-import star from '../assets/Slider/starSmall.png';
+import slide1 from '../../assets/Slider/slide1.png';
+import slide2 from '../../assets/Slider/slide2.png';
+import slide3 from '../../assets/Slider/slide3.png';
+import slide4 from '../../assets/Slider/slide4.png';
+import star from '../../assets/Slider/starSmall.png';
 
 const Wrap = styled.div`
 	&.slide {
@@ -107,17 +107,13 @@ const SliderDesk = ({ currentSlide, handleRegisterClick }) => {
 				<SliderAvatar />
 				<Title>What is the Dear Penfriend project?</Title>
 				<Text>
-					Dear Penfriend is a Ukrainian platform that helps children
-					from around the world learn English.
+					Dear Penfriend is a Ukrainian platform that helps children from around the world learn English.
 				</Text>
 				<Text>
-					You can watch educational videos and images. You can
-					comment, chat, learn new words, and get replies from
-					teachers and other students.
+					You can watch educational videos and images. You can comment, chat, learn new words, and get replies
+					from teachers and other students.
 				</Text>
-				<Text style={{ marginBottom: '33px' }}>
-					It’s a safe and fun place to learn together.
-				</Text>
+				<Text style={{ marginBottom: '33px' }}>It’s a safe and fun place to learn together.</Text>
 			</TextBox>
 			<Image>
 				<img src={slide1} alt="slide-1" />
@@ -136,12 +132,10 @@ const SliderDesk = ({ currentSlide, handleRegisterClick }) => {
 					</span>
 				</Title>
 				<Text>
-					When you take part in quizzes, answer questions, and join
-					the chats — you get likes and your rating grows.
+					When you take part in quizzes, answer questions, and join the chats — you get likes and your rating
+					grows.
 				</Text>
-				<Text style={{ marginBottom: '33px' }}>
-					Be active, be kind, and become a top student!
-				</Text>
+				<Text style={{ marginBottom: '33px' }}>Be active, be kind, and become a top student!</Text>
 			</TextBox>
 			<Image>
 				<img src={slide2} alt="slide-2" />
@@ -153,9 +147,8 @@ const SliderDesk = ({ currentSlide, handleRegisterClick }) => {
 				<SliderAvatar />
 				<Title>Advantages of the platform</Title>
 				<Text>
-					Easy to use, interesting videos and pictures, fun games and
-					tasks. Discuss topics and make friends from other countries.
-					Talk and learn English in real chats.
+					Easy to use, interesting videos and pictures, fun games and tasks. Discuss topics and make friends
+					from other countries. Talk and learn English in real chats.
 				</Text>
 			</TextBox>
 			<Image>
@@ -168,9 +161,8 @@ const SliderDesk = ({ currentSlide, handleRegisterClick }) => {
 				<SliderAvatar />
 				<Title>Join today!</Title>
 				<Text>
-					Join thousands of students and teachers from around the
-					world! Learn English with fun, talk with others, and enjoy
-					the journey. Sign up — it’s easy to start!
+					Join thousands of students and teachers from around the world! Learn English with fun, talk with
+					others, and enjoy the journey. Sign up — it’s easy to start!
 				</Text>
 				<Btn onClick={handleRegisterClick}>Register</Btn>
 			</TextBox>
@@ -183,12 +175,7 @@ const SliderDesk = ({ currentSlide, handleRegisterClick }) => {
 	return (
 		<>
 			{desktopSlides.map((slide, index) => (
-				<Wrap
-					key={index}
-					className={`slide ${
-						currentSlide === index ? 'slide-active' : ''
-					}`}
-				>
+				<Wrap key={index} className={`slide ${currentSlide === index ? 'slide-active' : ''}`}>
 					{slide}
 				</Wrap>
 			))}

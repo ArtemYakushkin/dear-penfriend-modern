@@ -1,12 +1,6 @@
-import {
-	ModalInner,
-	ModalImage,
-	ModalContent,
-	ModalSubtitle,
-	ModalSubtext,
-} from '../style/ModalStyles';
+import { ModalInner, ModalImage, ModalContent, ModalSubtitle, ModalSubtext } from '../../style/ModalStyles';
 
-import Star from '../assets/star.png';
+import Star from '../../assets/star.png';
 
 const QuizSuccessMessage = () => (
 	<ModalInner>
@@ -36,9 +30,7 @@ const QuizSuccessMessage = () => (
 			>
 				Congratulations!
 			</ModalSubtitle>
-			<ModalSubtext>
-				This is the correct answer. You are very knowledgeable!
-			</ModalSubtext>
+			<ModalSubtext>This is the correct answer. You are very knowledgeable!</ModalSubtext>
 		</ModalContent>
 	</ModalInner>
 );

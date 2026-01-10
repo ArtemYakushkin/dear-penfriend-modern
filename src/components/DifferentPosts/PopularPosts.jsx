@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { usePopularPosts } from '../hooks/usePopularPosts';
+import { usePopularPosts } from '../../hooks/usePopularPosts';
 import styled from 'styled-components';
 
-import Loader from './Loader';
-import InfoBoard from './InfoBoard';
+import Loader from '../Loader';
+import InfoBoard from '../InfoBoard';
 import PopularSlider from './PopularSlider';
-import { Container } from '../style/Container';
+import { Container } from '../../style/Container';
 
 const Popular = styled.section`
 	padding: 120px 0;

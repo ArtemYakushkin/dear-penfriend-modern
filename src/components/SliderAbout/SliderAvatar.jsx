@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import avatar1 from '../assets/Slider/avatar1.png';
-import avatar2 from '../assets/Slider/avatar2.png';
-import avatar3 from '../assets/Slider/avatar3.png';
+import avatar1 from '../../assets/Slider/avatar1.png';
+import avatar2 from '../../assets/Slider/avatar2.png';
+import avatar3 from '../../assets/Slider/avatar3.png';
 import { GoPlus } from 'react-icons/go';
 
 const Avatars = styled.div`
@@ -15,11 +15,7 @@ const Avatars = styled.div`
 	align-items: center;
 	padding: 12px 16px;
 	border-radius: 50px;
-	background: linear-gradient(
-		100.42deg,
-		rgba(47, 123, 247, 0.5) 16.09%,
-		rgba(47, 123, 246, 0.1) 105.27%
-	);
+	background: linear-gradient(100.42deg, rgba(47, 123, 247, 0.5) 16.09%, rgba(47, 123, 246, 0.1) 105.27%);
 	backdrop-filter: blur(5px);
 	margin-bottom: 23px;
 

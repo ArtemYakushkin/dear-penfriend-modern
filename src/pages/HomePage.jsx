@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { usePostsStore } from '../store/usePostsStore';
 
 import Hero from '../components/Hero';
-import ToolbarMain from '../components/ToolbarMain';
+import ToolbarMain from '../components/Toolbars/ToolbarMain';
 import PostsList from '../components/Posts/PostsList';
 import AboutProject from '../components/AboutProject';
 import ShareBlok from '../components/ShareBlok';

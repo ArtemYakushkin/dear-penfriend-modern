@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import SliderAvatar from './SliderAvatar';
-import slide1 from '../assets/Slider/slide1mobile.png';
-import slide2 from '../assets/Slider/slide2mobile.png';
-import slide3 from '../assets/Slider/slide3mobile.png';
-import slide4 from '../assets/Slider/slide4mobile.png';
-import stars from '../assets/Slider/starsMobile.png';
+import slide1 from '../../assets/Slider/slide1mobile.png';
+import slide2 from '../../assets/Slider/slide2mobile.png';
+import slide3 from '../../assets/Slider/slide3mobile.png';
+import slide4 from '../../assets/Slider/slide4mobile.png';
+import stars from '../../assets/Slider/starsMobile.png';
 
 const Wrap = styled.div`
 	&.slide {
@@ -110,13 +110,11 @@ const SliderMobile = ({ currentSlide, handleRegisterClick }) => {
 			</Image>
 			<TextBox>
 				<Text>
-					Dear Penfriend is a Ukrainian platform that helps children
-					from around the world learn English.
+					Dear Penfriend is a Ukrainian platform that helps children from around the world learn English.
 				</Text>
 				<Text>
-					You can watch educational videos and images. You can
-					comment, chat, learn new words, and get replies from
-					teachers and other students.
+					You can watch educational videos and images. You can comment, chat, learn new words, and get replies
+					from teachers and other students.
 				</Text>
 				<Text>It’s a safe and fun place to learn together.</Text>
 			</TextBox>
@@ -129,16 +127,12 @@ const SliderMobile = ({ currentSlide, handleRegisterClick }) => {
 			</Title>
 			<Image>
 				<img src={slide2} alt="slideMob1" />
-				<img
-					style={{ position: 'absolute', top: '12px', right: '17px' }}
-					src={stars}
-					alt="stars"
-				/>
+				<img style={{ position: 'absolute', top: '12px', right: '17px' }} src={stars} alt="stars" />
 			</Image>
 			<TextBox>
 				<Text>
-					When you take part in quizzes, answer questions, and join
-					the chats — you get likes and your rating grows.
+					When you take part in quizzes, answer questions, and join the chats — you get likes and your rating
+					grows.
 				</Text>
 				<Text>Be active, be kind, and become a top student!</Text>
 			</TextBox>
@@ -154,9 +148,8 @@ const SliderMobile = ({ currentSlide, handleRegisterClick }) => {
 			</Image>
 			<TextBox>
 				<Text>
-					Easy to use, interesting videos and pictures, fun games and
-					tasks. Discuss topics and make friends from other countries.
-					Talk and learn English in real chats.
+					Easy to use, interesting videos and pictures, fun games and tasks. Discuss topics and make friends
+					from other countries. Talk and learn English in real chats.
 				</Text>
 			</TextBox>
 		</Content>,
@@ -171,9 +164,8 @@ const SliderMobile = ({ currentSlide, handleRegisterClick }) => {
 			</Image>
 			<TextBox>
 				<Text>
-					Join thousands of students and teachers from around the
-					world! Learn English with fun, talk with others, and enjoy
-					the journey. Sign up — it’s easy to start!
+					Join thousands of students and teachers from around the world! Learn English with fun, talk with
+					others, and enjoy the journey. Sign up — it’s easy to start!
 				</Text>
 			</TextBox>
 			<Btn onClick={handleRegisterClick}>Register</Btn>
@@ -183,12 +175,7 @@ const SliderMobile = ({ currentSlide, handleRegisterClick }) => {
 	return (
 		<>
 			{mobileSlides.map((slide, index) => (
-				<Wrap
-					key={index}
-					className={`slide ${
-						currentSlide === index ? 'slide-active' : ''
-					}`}
-				>
+				<Wrap key={index} className={`slide ${currentSlide === index ? 'slide-active' : ''}`}>
 					{slide}
 				</Wrap>
 			))}

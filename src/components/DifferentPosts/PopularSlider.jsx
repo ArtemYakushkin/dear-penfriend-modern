@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import styled from 'styled-components';
 
-import { useResponsive } from '../hooks/useResponsive';
+import { useResponsive } from '../../hooks/useResponsive';
 import PopularCard from './PopularCard';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 

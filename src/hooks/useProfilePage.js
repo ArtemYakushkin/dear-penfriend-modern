@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import {
 	getUserProfile,
-	getUserPostCount,
+	// getUserPostCount,
+	subscribeToUserPostCount,
 	subscribeToAuthorMessages,
 	updateAboutMe,
 } from '../api/profileApi';
@@ -40,13 +41,18 @@ export const useProfilePage = (user) => {
 			setState((s) => ({ ...s, ...data }));
 		});
 
-		getUserPostCount(user.uid).then((count) =>
-			setState((s) => ({ ...s, postCount: count })),
-		);
+		const unsubPostCount = subscribeToUserPostCount(user.uid, (count) => {
+			setState((s) => ({ ...s, postCount: count }));
+		});
 
-		return subscribeToAuthorMessages(user.uid, (messages) =>
-			setState((s) => ({ ...s, messages })),
-		);
+		const unsubMessages = subscribeToAuthorMessages(user.uid, (messages) => {
+			setState((s) => ({ ...s, messages }));
+		});
+
+		return () => {
+			unsubPostCount();
+			unsubMessages();
+		};
 	}, [user]);
 
 	const publishAboutMe = async (text, setIsEditing) => {

@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 import { usePostsStore } from '../store/usePostsStore';
 import { useAuthStore } from '../store/useAuthStore';
+import { incrementPostViews } from '../api/postViewApi';
 
 import DetailPost from '../components/DetailPost';
-import PopularPosts from '../components/PopularPosts';
+import PopularPosts from '../components/DifferentPosts/PopularPosts';
 import ShareBlok from '../components/ShareBlok';
 import InfoBoard from '../components/InfoBoard';
 import Loader from '../components/Loader';
@@ -76,6 +77,12 @@ const PostDetailsPage = () => {
 		}
 	}, [post, authors, loadAuthorById]);
 
+	useEffect(() => {
+		if (!postId) return;
+
+		incrementPostViews(postId);
+	}, [postId]);
+
 	if (loading) return <Loader />;
 
 	if (!post) {
@@ -97,12 +104,7 @@ const PostDetailsPage = () => {
 
 	return (
 		<Details>
-			<DetailPost
-				post={post}
-				postId={postId}
-				user={user}
-				author={author}
-			/>
+			<DetailPost post={post} postId={postId} user={user} author={author} />
 
 			<PopularPosts />
 

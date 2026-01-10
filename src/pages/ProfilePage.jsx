@@ -5,13 +5,15 @@ import { useAuthStore } from '../store/useAuthStore';
 import { useProfilePage } from '../hooks/useProfilePage';
 import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
 import CardProfile from '../components/CardProfile/CardProfile';
-import Tabs from '../components/Tabs';
+import TabsProfile from '../components/Tabs/TabsProfile';
 import AboutMe from '../components/AboutMe';
 import ModalEditProfile from '../components/Modals/ModalEditProfile';
 import ModalUpdateCredentials from '../components/Modals/ModalUpdateCredentials';
-import PopularPosts from '../components/PopularPosts';
+import PopularPosts from '../components/DifferentPosts/PopularPosts';
 import MessagesList from '../components/Messages/MessagesList';
 import InfoBoard from '../components/InfoBoard';
+import ProfilePosts from '../components/DifferentPosts/ProfilePosts';
+import SavedPosts from '../components/DifferentPosts/SavedPosts';
 import { Container } from '../style/Container';
 
 const ProfileWrap = styled.div`
@@ -64,7 +66,7 @@ const ProfilePage = () => {
 					setIsModalSetting={setIsModalSetting}
 				/>
 
-				<Tabs activeTab={activeTab} setActiveTab={setActiveTab} postCount={state.postCount} />
+				<TabsProfile activeTab={activeTab} setActiveTab={setActiveTab} postCount={state.postCount} />
 
 				<>
 					{activeTab === 'about' && (
@@ -89,9 +91,9 @@ const ProfilePage = () => {
 						</Container>
 					)}
 
-					{/* {activeTab === 'posts' && <ProfilePosts />} */}
+					{activeTab === 'posts' && <ProfilePosts />}
 
-					{/* {activeTab === 'saved' && <SavedPosts />} */}
+					{activeTab === 'saved' && <SavedPosts />}
 				</>
 
 				{isModalEditProfile && (

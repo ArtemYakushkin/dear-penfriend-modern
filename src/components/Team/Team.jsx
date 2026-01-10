@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import TeamAnna from './TeamAnna';
 import TeamArtem from './TeamArtem';
 import TeamNastya from './TeamNastya';
-import { Container } from '../style/Container';
+import { Container } from '../../style/Container';
 
 const Section = styled.div`
 	padding: 120px 0;
@@ -105,10 +105,7 @@ const Team = () => {
 				<Wrap>
 					<Left>
 						<Title>Our team</Title>
-						<Text>
-							Meet the people who made this platform with love,
-							ideas — and many cups of coffee
-						</Text>
+						<Text>Meet the people who made this platform with love, ideas — and many cups of coffee</Text>
 					</Left>
 
 					<Right>

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import Slider from '../components/Slider';
+import Slider from '../components/SliderAbout/Slider';
 import HowItWorks from '../components/HowItWorks';
-import Team from '../components/Team';
+import Team from '../components/Team/Team';
 import LetterSection from '../components/LetterSection/LetterSection';
 import ShareBlok from '../components/ShareBlok';
 

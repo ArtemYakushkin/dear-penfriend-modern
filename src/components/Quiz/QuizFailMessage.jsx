@@ -1,11 +1,5 @@
-import { useResponsive } from '../hooks/useResponsive';
-import {
-	ModalInner,
-	ModalImage,
-	ModalContent,
-	ModalSubtitle,
-	ModalSubtext,
-} from '../style/ModalStyles';
+import { useResponsive } from '../../hooks/useResponsive';
+import { ModalInner, ModalImage, ModalContent, ModalSubtitle, ModalSubtext } from '../../style/ModalStyles';
 
 const QuizFailMessage = () => {
 	const { isMobile } = useResponsive();
@@ -42,12 +36,8 @@ const QuizFailMessage = () => {
 					marginBottom: '0px',
 				}}
 			>
-				<ModalSubtitle style={{ color: 'var(--color-orange)' }}>
-					Oops!
-				</ModalSubtitle>
-				<ModalSubtext>
-					Not correct this time. Don’t worry — try again!
-				</ModalSubtext>
+				<ModalSubtitle style={{ color: 'var(--color-orange)' }}>Oops!</ModalSubtitle>
+				<ModalSubtext>Not correct this time. Don’t worry — try again!</ModalSubtext>
 			</ModalContent>
 		</ModalInner>
 	);

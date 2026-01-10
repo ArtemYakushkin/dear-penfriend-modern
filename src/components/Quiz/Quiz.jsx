@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import QuizSuccessMessage from './QuizSuccessMessage';
 import QuizFailMessage from './QuizFailMessage';
-import ModalQuiz from './Modals/ModalQuiz';
-import ModalUnregister from './Modals/ModalUnregister';
+import ModalQuiz from '../Modals/ModalQuiz';
+import ModalUnregister from '../Modals/ModalUnregister';
 
 const QuizWrap = styled.div`
 	padding: 30px;

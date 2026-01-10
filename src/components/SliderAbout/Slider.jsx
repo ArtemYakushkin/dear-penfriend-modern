@@ -1,22 +1,19 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import { useAuthModals } from '../hooks/useAuthModals';
-import { useResponsive } from '../hooks/useResponsive';
+import { useAuthModals } from '../../hooks/useAuthModals';
+import { useResponsive } from '../../hooks/useResponsive';
 import SliderMobile from './SliderMobile';
 import SliderTablet from './SliderTablet';
 import SliderDesk from './SliderDesk';
-import Register from './Register';
-import Login from './Login';
-import { Container } from '../style/Container';
+import Register from '../Register';
+import Login from '../Login';
+import { Container } from '../../style/Container';
 
-import Vector from '../assets/Vectors/slider-vector.png';
-import VectorTablet from '../assets/Vectors/slider-vector-tablet.png';
+import Vector from '../../assets/Vectors/slider-vector.png';
+import VectorTablet from '../../assets/Vectors/slider-vector-tablet.png';
 
-import {
-	MdOutlineArrowBackIos,
-	MdOutlineArrowForwardIos,
-} from 'react-icons/md';
+import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from 'react-icons/md';
 
 const SliderWrap = styled.div`
 	position: relative;
@@ -154,11 +151,7 @@ const Slider = () => {
 	const [touchStartX, setTouchStartX] = useState(null);
 	const [touchEndX, setTouchEndX] = useState(null);
 	const { isMobile, isTablet } = useResponsive();
-	const SlidesComponent = isMobile
-		? SliderMobile
-		: isTablet
-		? SliderTablet
-		: SliderDesk;
+	const SlidesComponent = isMobile ? SliderMobile : isTablet ? SliderTablet : SliderDesk;
 	const slideCount = SlidesComponent.count;
 
 	const handlePrev = () => {
@@ -192,29 +185,16 @@ const Slider = () => {
 	};
 
 	return (
-		<SliderWrap
-			onTouchStart={handleTouchStart}
-			onTouchMove={handleTouchMove}
-			onTouchEnd={handleTouchEnd}
-		>
+		<SliderWrap onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
 			<Container style={{ position: 'relative' }}>
 				<SliderInner>
 					<Slides>
 						{isMobile ? (
-							<SliderMobile
-								currentSlide={currentSlide}
-								handleRegisterClick={handleRegisterClick}
-							/>
+							<SliderMobile currentSlide={currentSlide} handleRegisterClick={handleRegisterClick} />
 						) : isTablet ? (
-							<SliderTablet
-								currentSlide={currentSlide}
-								handleRegisterClick={handleRegisterClick}
-							/>
+							<SliderTablet currentSlide={currentSlide} handleRegisterClick={handleRegisterClick} />
 						) : (
-							<SliderDesk
-								currentSlide={currentSlide}
-								handleRegisterClick={handleRegisterClick}
-							/>
+							<SliderDesk currentSlide={currentSlide} handleRegisterClick={handleRegisterClick} />
 						)}
 					</Slides>
 
@@ -225,35 +205,20 @@ const Slider = () => {
 								disabled={currentSlide === 0}
 								style={{
 									opacity: currentSlide === 0 ? 0.5 : 1,
-									cursor:
-										currentSlide === 0
-											? 'default'
-											: 'pointer',
+									cursor: currentSlide === 0 ? 'default' : 'pointer',
 								}}
 							>
-								<MdOutlineArrowBackIos
-									size={22}
-									style={{ color: 'var(--color-white)' }}
-								/>
+								<MdOutlineArrowBackIos size={22} style={{ color: 'var(--color-white)' }} />
 							</BtnPrev>
 							<BtnNext
 								onClick={handleNext}
 								disabled={currentSlide === slideCount - 1}
 								style={{
-									opacity:
-										currentSlide === slideCount - 1
-											? 0.5
-											: 1,
-									cursor:
-										currentSlide === slideCount - 1
-											? 'default'
-											: 'pointer',
+									opacity: currentSlide === slideCount - 1 ? 0.5 : 1,
+									cursor: currentSlide === slideCount - 1 ? 'default' : 'pointer',
 								}}
 							>
-								<MdOutlineArrowForwardIos
-									size={22}
-									style={{ color: 'var(--color-white)' }}
-								/>
+								<MdOutlineArrowForwardIos size={22} style={{ color: 'var(--color-white)' }} />
 							</BtnNext>
 						</>
 					)}
@@ -261,11 +226,7 @@ const Slider = () => {
 					<Pagination>
 						{Array.from({ length: slideCount }).map((_, index) => (
 							<Dot
-								className={`${
-									currentSlide === index
-										? 'slider-dot-active'
-										: ''
-								}`}
+								className={`${currentSlide === index ? 'slider-dot-active' : ''}`}
 								key={index}
 								onClick={() => setCurrentSlide(index)}
 							></Dot>

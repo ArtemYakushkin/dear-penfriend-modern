@@ -1,8 +1,8 @@
 import { HiOutlineClipboardDocumentList } from 'react-icons/hi2';
 import { LiaIdCardSolid } from 'react-icons/lia';
 
-import { Container } from '../style/Container';
-import { Wrap, Btn } from '../style/TabsStyles';
+import { Container } from '../../style/Container';
+import { Wrap, Btn } from '../../style/TabsStyles';
 
 const TabsAuthor = ({ activeTab, setActiveTab, author }) => {
 	return (

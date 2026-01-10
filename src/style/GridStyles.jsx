@@ -261,3 +261,14 @@ export const GridSaved = styled.button`
 	justify-content: center;
 	color: var(--color-black-change);
 `;
+
+export const GridBtnDel = styled.button`
+	// position: absolute;
+	// bottom: -25px;
+	// right: 30px;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 16px;
+	color: var(--color-accent);
+	margin-top: 20px;
+`;

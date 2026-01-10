@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import SliderAvatar from './SliderAvatar';
-import slide1 from '../assets/Slider/slide1tab.png';
-import slide2 from '../assets/Slider/slide2tab.png';
-import slide3 from '../assets/Slider/slide3tab.png';
-import slide4 from '../assets/Slider/slide4tab.png';
-import stars from '../assets/Slider/stars.png';
+import slide1 from '../../assets/Slider/slide1tab.png';
+import slide2 from '../../assets/Slider/slide2tab.png';
+import slide3 from '../../assets/Slider/slide3tab.png';
+import slide4 from '../../assets/Slider/slide4tab.png';
+import stars from '../../assets/Slider/stars.png';
 
 const Wrap = styled.div`
 	&.slide {
@@ -86,11 +86,7 @@ const Image = styled.div`
 const TextBox = styled.div`
 	margin-top: auto;
 	padding: 20px 30px;
-	background: linear-gradient(
-		180deg,
-		rgba(37, 36, 37, 0.6) 0%,
-		rgba(9, 78, 190, 0.6) 122.06%
-	);
+	background: linear-gradient(180deg, rgba(37, 36, 37, 0.6) 0%, rgba(9, 78, 190, 0.6) 122.06%);
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
@@ -132,13 +128,11 @@ const SliderTablet = ({ currentSlide, handleRegisterClick }) => {
 				<SliderAvatar />
 				<TextBox>
 					<Text>
-						Dear Penfriend is a Ukrainian platform that helps
-						children from around the world learn English.
+						Dear Penfriend is a Ukrainian platform that helps children from around the world learn English.
 					</Text>
 					<Text>
-						You can watch educational videos and images. You can
-						comment, chat, learn new words, and get replies from
-						teachers and other students.
+						You can watch educational videos and images. You can comment, chat, learn new words, and get
+						replies from teachers and other students.
 					</Text>
 					<Text>It’s a safe and fun place to learn together.</Text>
 				</TextBox>
@@ -147,17 +141,15 @@ const SliderTablet = ({ currentSlide, handleRegisterClick }) => {
 
 		<Content>
 			<TitleBox>
-				<Title style={{ marginBottom: '0px' }}>
-					Interactives and bonus system
-				</Title>
+				<Title style={{ marginBottom: '0px' }}>Interactives and bonus system</Title>
 				<img src={stars} alt="stars" />
 			</TitleBox>
 			<Image className="slide2">
 				<SliderAvatar />
 				<TextBox>
 					<Text>
-						When you take part in quizzes, answer questions, and
-						join the chats — you get likes and your rating grows.
+						When you take part in quizzes, answer questions, and join the chats — you get likes and your
+						rating grows.
 					</Text>
 					<Text>Be active, be kind, and become a top student!</Text>
 				</TextBox>
@@ -170,9 +162,8 @@ const SliderTablet = ({ currentSlide, handleRegisterClick }) => {
 				<SliderAvatar />
 				<TextBox>
 					<Text>
-						Easy to use, interesting videos and pictures, fun games
-						and tasks. Discuss topics and make friends from other
-						countries. Talk and learn English in real chats.
+						Easy to use, interesting videos and pictures, fun games and tasks. Discuss topics and make
+						friends from other countries. Talk and learn English in real chats.
 					</Text>
 				</TextBox>
 			</Image>
@@ -184,9 +175,8 @@ const SliderTablet = ({ currentSlide, handleRegisterClick }) => {
 				<Btn onClick={handleRegisterClick}>Register</Btn>
 				<TextBox>
 					<Text>
-						Join thousands of students and teachers from around the
-						world! Learn English with fun, talk with others, and
-						enjoy the journey. Sign up — it’s easy to start!
+						Join thousands of students and teachers from around the world! Learn English with fun, talk with
+						others, and enjoy the journey. Sign up — it’s easy to start!
 					</Text>
 				</TextBox>
 			</Image>
@@ -196,12 +186,7 @@ const SliderTablet = ({ currentSlide, handleRegisterClick }) => {
 	return (
 		<>
 			{tabletSlides.map((slide, index) => (
-				<Wrap
-					key={index}
-					className={`slide ${
-						currentSlide === index ? 'slide-active' : ''
-					}`}
-				>
+				<Wrap key={index} className={`slide ${currentSlide === index ? 'slide-active' : ''}`}>
 					{slide}
 				</Wrap>
 			))}
