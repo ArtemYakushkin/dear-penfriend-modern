@@ -1,6 +1,5 @@
 :root {
-	--background: url('../assets/background/background.png') center / cover
-		no-repeat;
+	--background: url('../assets/background/background.png') center / cover no-repeat;
 	--bg-scroll-thumb: #adacac;
 	--bg-scroll-track: #eff2f9;
 	--bg-auth: #bcd8ff;
@@ -27,6 +26,7 @@
 	--bg-letter: #ffffffb2;
 	--bg-author-info: #ffffff;
 	--bg-author-status: #eff2f9;
+	--bg-blue-inactive-hover: #eff2f966;
 
 	--color-accent: #2f7bf6;
 	--color-accent-change: #2f7bf6;
@@ -53,8 +53,7 @@
 }
 
 [data-theme='dark'] {
-	--background: url('../assets/background/background-dark.png') center / cover
-		no-repeat;
+	--background: url('../assets/background/background-dark.png') center / cover no-repeat;
 	--bg-scroll-thumb: #adacac;
 	--bg-scroll-track: #666666;
 	--bg-auth: #01111f;
@@ -80,6 +79,7 @@
 	--bg-letter: #094ebe33;
 	--bg-author-info: #094ebe4d;
 	--bg-author-status: #eff2f91a;
+	--bg-blue-inactive-hover: #eff2f966;
 
 	--color-accent: #2f7bf6;
 	--color-accent-change: #ffffff;

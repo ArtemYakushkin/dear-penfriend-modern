@@ -12,11 +12,11 @@ const TabsAuthor = ({ activeTab, setActiveTab, author }) => {
 					<LiaIdCardSolid size={24} /> About
 				</Btn>
 
-				{author.createdPosts.length === 0 ? (
+				{author.postCount === 0 ? (
 					<></>
 				) : (
 					<Btn className={`${activeTab === 'posts' ? 'active' : ''}`} onClick={() => setActiveTab('posts')}>
-						<HiOutlineClipboardDocumentList size={24} /> Posts ({author.createdPosts.length})
+						<HiOutlineClipboardDocumentList size={24} /> Posts ({author.postCount})
 					</Btn>
 				)}
 			</Wrap>

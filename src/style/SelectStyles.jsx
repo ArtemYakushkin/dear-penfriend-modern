@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Select = styled.div`
 	width: 175px;
 	flex-shrink: 0;
+	position: relative;
 
 	@media (min-width: 768px) and (max-width: 1259px) {
 		width: 180px;
@@ -16,7 +17,6 @@ export const Select = styled.div`
 export const SelectHeader = styled.div`
 	display: flex;
 	align-items: center;
-	position: relative;
 `;
 
 export const SelectTitle = styled.span`

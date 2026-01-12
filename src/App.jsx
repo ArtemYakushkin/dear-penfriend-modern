@@ -1,10 +1,5 @@
 import { useEffect } from 'react';
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	// Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,10 +12,8 @@ import AboutPage from './pages/AboutPage';
 import ProfilePage from './pages/ProfilePage';
 import AuthorPage from './pages/AuthorPage';
 import CreatePostPage from './pages/CreatePostPage';
-// import Loader from './components/Loader';
+import NotificationsPage from './pages/NotificationsPage';
 import Footer from './components/Footer';
-
-// const allowedEmails = process.env.REACT_APP_ALLOWED_EMAILS?.split(',') || [];
 
 const App = () => {
 	const init = useAuthStore((state) => state.init);
@@ -28,25 +21,6 @@ const App = () => {
 	useEffect(() => {
 		init();
 	}, [init]);
-
-	// const [user, setUser] = useState(null);
-	// const [authChecked, setAuthChecked] = useState(false);
-
-	// useEffect(() => {
-	// 	const auth = getAuth();
-	// 	const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-	// 		setUser(firebaseUser);
-	// 		setAuthChecked(true);
-	// 	});
-
-	// 	return () => unsubscribe();
-	// }, []);
-
-	// if (!authChecked) {
-	// 	return <Loader />;
-	// }
-
-	// const isAllowed = user && allowedEmails.includes(user.email);
 
 	return (
 		<Router>
@@ -59,6 +33,7 @@ const App = () => {
 				<Route path="/profile" element={<ProfilePage />} />
 				<Route path="/author/:uid" element={<AuthorPage />} />
 				<Route path="/create" element={<CreatePostPage />} />
+				<Route path="/notifications" element={<NotificationsPage />} />
 			</Routes>
 
 			<Footer />

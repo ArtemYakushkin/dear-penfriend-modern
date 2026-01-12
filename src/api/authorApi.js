@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export const fetchAuthorData = async (uid) => {
@@ -32,4 +32,12 @@ export const fetchAuthorPosts = async (createdPosts) => {
 		console.error('Error fetching posts:', error);
 		return [];
 	}
+};
+
+export const subscribeToUserPostCount = (uid, callback) => {
+	const q = query(collection(db, 'posts'), where('author.uid', '==', uid));
+
+	return onSnapshot(q, (snapshot) => {
+		callback(snapshot.size);
+	});
 };
