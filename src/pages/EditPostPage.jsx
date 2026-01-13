@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-
-import { useCreatePost } from '../hooks/useCreatePost';
+import { useEditPost } from '../hooks/useEditPost';
 import { useResponsive } from '../hooks/useResponsive';
 import { Container } from '../style/Container';
 import {
@@ -17,91 +15,45 @@ import {
 	CorrectBox,
 	InputRadio,
 	TextCorrect,
+	BtnDelete,
 	BtnAddAnswer,
 	PollGroup,
 	PollLabel,
 	MediaList,
 	Image,
+	BtnDeleteMedia,
 	AddFile,
 	AddLabel,
 	BtnCreate,
 } from '../style/CreateEditStyles';
 
-const CreatePostPage = () => {
+import { MdOutlineDelete } from 'react-icons/md';
+import { IoClose } from 'react-icons/io5';
+
+const EditPostPage = () => {
 	const {
 		title,
 		setTitle,
 		text,
 		setText,
-		files,
-		setFiles,
+		oldMedia,
+		newMedia,
+		activeTab,
 		quiz,
 		setQuiz,
 		poll,
-		setPoll,
-		activeTab,
-		setActiveTab,
-		submit,
-		previews,
-		setPreviews,
-	} = useCreatePost();
-	const { isMobile } = useResponsive();
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
-	const handleQuizQuestionChange = (e) => {
-		setQuiz((prev) => ({
-			...prev,
-			question: e.target.value,
-		}));
-	};
-
-	const handleQuizAnswerChange = (index, value) => {
-		setQuiz((prev) => {
-			const answers = [...prev.answers];
-			answers[index] = value;
-
-			return {
-				...prev,
-				answers,
-			};
-		});
-	};
-
-	const handleCorrectAnswerChange = (index) => {
-		setQuiz((prev) => ({
-			...prev,
-			correctAnswer: index,
-		}));
-	};
-
-	const addAnswer = () => {
-		setQuiz((prev) => ({
-			...prev,
-			answers: [...prev.answers, ''],
-		}));
-	};
-
-	const handlePollQuestionChange = (e) => {
-		setPoll((prev) => ({
-			...prev,
-			question: e.target.value,
-		}));
-	};
-
-	const handleFilesChange = (e) => {
-		const selectedFiles = Array.from(e.target.files);
-
-		if (!selectedFiles.length) return;
-
-		setFiles(selectedFiles);
-
-		const previewUrls = selectedFiles.map((file) => URL.createObjectURL(file));
-
-		setPreviews(previewUrls);
-	};
+		handleMediaChange,
+		removeOldMedia,
+		removeNewMedia,
+		handleQuizChange,
+		handleQuizAnswerChange,
+		addQuizAnswer,
+		removeQuizAnswer,
+		handlePollChange,
+		handleTabChange,
+		handleUpdate,
+	} = useEditPost();
+	const { isTablet } = useResponsive();
 
 	return (
 		<Wrap>
@@ -109,46 +61,53 @@ const CreatePostPage = () => {
 				<Form
 					onSubmit={(e) => {
 						e.preventDefault();
-						submit();
+						handleUpdate();
 					}}
 				>
 					<InputBox>
 						<Input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-						<Placeholder>Create title</Placeholder>
+						<Placeholder>Title</Placeholder>
 					</InputBox>
 
 					<InputBox style={{ height: '250px' }}>
 						<Textarea value={text} onChange={(e) => setText(e.target.value)} />
-						<Placeholder>Create text</Placeholder>
+						<Placeholder>Text</Placeholder>
 					</InputBox>
 
 					<Tabs>
 						<BtnTabs
-							className={`${activeTab === 'Quiz' ? 'tabs-btn-active' : ''}`}
 							type="button"
-							onClick={() => setActiveTab('Quiz')}
+							className={`${activeTab === 'Quiz' ? 'tabs-btn-active' : ''}`}
+							onClick={() => handleTabChange('Quiz')}
 						>
 							Quiz
 						</BtnTabs>
 						<BtnTabs
-							className={`${activeTab === 'Poll' ? 'tabs-btn-active' : ''}`}
 							type="button"
-							onClick={() => setActiveTab('Poll')}
+							className={`${activeTab === 'Poll' ? 'tabs-btn-active' : ''}`}
+							onClick={() => handleTabChange('Poll')}
 						>
 							Poll
+						</BtnTabs>
+						<BtnTabs
+							type="button"
+							className={`${activeTab === null ? 'tabs-btn-active' : ''}`}
+							onClick={() => handleTabChange(null)}
+						>
+							None
 						</BtnTabs>
 					</Tabs>
 
 					{activeTab === 'Quiz' && (
 						<Section>
 							<InputBox>
-								<Input type="text" value={quiz.question} onChange={handleQuizQuestionChange} />
+								<Input type="text" value={quiz.question} onChange={handleQuizChange} />
 								<Placeholder>Question:</Placeholder>
 							</InputBox>
 
 							{quiz.answers.map((answer, index) => (
 								<QuizAnswers key={index}>
-									<InputBox style={{ width: isMobile ? '100%' : '50%' }}>
+									<InputBox>
 										<Input
 											type="text"
 											value={answer}
@@ -156,13 +115,12 @@ const CreatePostPage = () => {
 										/>
 										<Placeholder>Answer:</Placeholder>
 									</InputBox>
-
 									<CorrectBox>
 										<InputRadio
 											type="radio"
 											name="correctAnswer"
 											checked={quiz.correctAnswer === index}
-											onChange={() => handleCorrectAnswerChange(index)}
+											onChange={() => setQuiz({ ...quiz, correctAnswer: index })}
 										/>
 										<TextCorrect
 											style={{
@@ -174,11 +132,13 @@ const CreatePostPage = () => {
 										>
 											Correct
 										</TextCorrect>
+										<BtnDelete type="button" onClick={() => removeQuizAnswer(index)}>
+											<MdOutlineDelete size={isTablet ? '30' : '40'} />
+										</BtnDelete>
 									</CorrectBox>
 								</QuizAnswers>
 							))}
-
-							<BtnAddAnswer type="button" onClick={addAnswer}>
+							<BtnAddAnswer type="button" onClick={addQuizAnswer}>
 								Add Answer
 							</BtnAddAnswer>
 						</Section>
@@ -187,12 +147,7 @@ const CreatePostPage = () => {
 					{activeTab === 'Poll' && (
 						<Section>
 							<InputBox>
-								<Input
-									type="text"
-									name="question"
-									value={poll.question}
-									onChange={handlePollQuestionChange}
-								/>
+								<Input type="text" name="question" value={poll.question} onChange={handlePollChange} />
 								<Placeholder>Question:</Placeholder>
 							</InputBox>
 							<PollGroup>
@@ -209,15 +164,24 @@ const CreatePostPage = () => {
 					)}
 
 					<Section>
-						{files.length > 0 && (
-							<MediaList>
-								{previews.map((src, index) => (
-									<Image key={index}>
-										<img src={src} alt={`Preview ${index + 1}`} />
-									</Image>
-								))}
-							</MediaList>
-						)}
+						<MediaList>
+							{oldMedia.map((url, i) => (
+								<Image key={`old-${i}`}>
+									<img src={url} alt="media" />
+									<BtnDeleteMedia type="button" onClick={() => removeOldMedia(url)}>
+										<IoClose size={42} />
+									</BtnDeleteMedia>
+								</Image>
+							))}
+							{newMedia.map((item, i) => (
+								<Image key={`new-${i}`}>
+									<img src={item.preview} alt="new media" />
+									<BtnDeleteMedia type="button" onClick={() => removeNewMedia(i)}>
+										<IoClose size={42} />
+									</BtnDeleteMedia>
+								</Image>
+							))}
+						</MediaList>
 
 						<AddFile>
 							<AddLabel htmlFor="imageInputCreate">Add Media</AddLabel>
@@ -227,16 +191,16 @@ const CreatePostPage = () => {
 								type="file"
 								multiple
 								accept="image/jpeg, image/png, image/gif, video/mp4"
-								onChange={handleFilesChange}
+								onChange={handleMediaChange}
 							/>
 						</AddFile>
 					</Section>
 
-					<BtnCreate type="submit">Create</BtnCreate>
+					<BtnCreate type="submit">Update Post</BtnCreate>
 				</Form>
 			</Container>
 		</Wrap>
 	);
 };
 
-export default CreatePostPage;
+export default EditPostPage;

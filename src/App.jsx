@@ -13,6 +13,7 @@ import ProfilePage from './pages/ProfilePage';
 import AuthorPage from './pages/AuthorPage';
 import CreatePostPage from './pages/CreatePostPage';
 import NotificationsPage from './pages/NotificationsPage';
+import EditPostPage from './pages/EditPostPage';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
 				<Route path="/author/:uid" element={<AuthorPage />} />
 				<Route path="/create" element={<CreatePostPage />} />
 				<Route path="/notifications" element={<NotificationsPage />} />
+				<Route path="/edit-post/:postId" element={<EditPostPage />} />
 			</Routes>
 
 			<Footer />
