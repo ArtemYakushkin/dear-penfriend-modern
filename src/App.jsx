@@ -14,6 +14,7 @@ import AuthorPage from './pages/AuthorPage';
 import CreatePostPage from './pages/CreatePostPage';
 import NotificationsPage from './pages/NotificationsPage';
 import EditPostPage from './pages/EditPostPage';
+import PrivacyPage from './pages/PrivacyPage';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
 				<Route path="/create" element={<CreatePostPage />} />
 				<Route path="/notifications" element={<NotificationsPage />} />
 				<Route path="/edit-post/:postId" element={<EditPostPage />} />
+				<Route path={`/privacy`} element={<PrivacyPage />} />
 			</Routes>
 
 			<Footer />
