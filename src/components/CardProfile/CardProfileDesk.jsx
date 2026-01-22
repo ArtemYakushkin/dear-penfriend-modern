@@ -9,6 +9,7 @@ import telegram from '../../assets/SocialIcon/telegram.png';
 import ButtonLg from '../Buttons/ButtonLg';
 
 import { FiSettings } from 'react-icons/fi';
+import { AiOutlineDashboard } from 'react-icons/ai';
 
 const CardContainer = styled.div`
 	max-width: 1440px;
@@ -131,6 +132,17 @@ const Settings = styled.div`
 	gap: 20px;
 `;
 
+const BtnDashboard = styled(Link)`
+	width: 54px;
+	height: 54px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--color-accent);
+	color: var(--color-white);
+`;
+
 const CardProfileDesk = ({
 	avatar,
 	nickname,
@@ -196,6 +208,11 @@ const CardProfileDesk = ({
 
 					{showSettings && (
 						<Settings>
+							{isAllowed && (
+								<BtnDashboard to="/dashboard">
+									<AiOutlineDashboard size={34} />
+								</BtnDashboard>
+							)}
 							<ButtonLg
 								text={'Edit profile information'}
 								onClick={() => setIsModalEditProfile(true)}
