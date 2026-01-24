@@ -9,7 +9,7 @@ import telegram from '../../assets/SocialIcon/telegram.png';
 import ButtonLg from '../Buttons/ButtonLg';
 import { Container } from '../../style/Container';
 
-import { FiSettings } from 'react-icons/fi';
+import { FiSettings, FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 
 const Info = styled.div`
 	position: relative;
@@ -130,6 +130,10 @@ const CardProfileTablet = ({
 	setIsModalEditProfile,
 	setIsModalSetting,
 	isAllowed,
+	showSubscribe,
+	isFollowing,
+	onSubscribe,
+	onUnsubscribe,
 }) => {
 	return (
 		<Container>
@@ -213,6 +217,36 @@ const CardProfileTablet = ({
 							</Link>
 						)}
 					</>
+				)}
+
+				{showSubscribe && (
+					<ButtonLg
+						text={
+							isFollowing ? (
+								<>
+									<FiMinusCircle size={20} />
+									Unsubscribe
+								</>
+							) : (
+								<>
+									<FiPlusCircle size={20} />
+									Subscribe
+								</>
+							)
+						}
+						onClick={isFollowing ? onUnsubscribe : onSubscribe}
+						style={{
+							backgroundColor: 'var(--color-accent)',
+							color: 'var(--color-white)',
+							border: '1px solid var(--color-accent)',
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							gap: '8px',
+							width: '640px',
+							margin: '20px 20px 0 20px',
+						}}
+					/>
 				)}
 			</Info>
 		</Container>

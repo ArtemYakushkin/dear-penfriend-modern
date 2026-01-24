@@ -15,6 +15,9 @@ export const getNotificationRoute = (notification) => {
 		case 'reply_to_message':
 			return `/author/${notification.sender.uid}`;
 
+		case 'new_follow':
+			return `/author/${notification.sender.uid}`;
+
 		default:
 			return '/';
 	}

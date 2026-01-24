@@ -2,6 +2,7 @@ import { LuBookmark } from 'react-icons/lu';
 import { HiOutlineClipboardDocumentList } from 'react-icons/hi2';
 import { LiaIdCardSolid } from 'react-icons/lia';
 import { BiMessageRoundedDots } from 'react-icons/bi';
+import { PiUsersThree } from 'react-icons/pi';
 
 import { useResponsive } from '../../hooks/useResponsive';
 import { Container } from '../../style/Container';
@@ -32,6 +33,13 @@ const TabsProfile = ({ activeTab, setActiveTab, postCount }) => {
 
 				<Btn className={`${activeTab === 'saved' ? 'active' : ''}`} onClick={() => setActiveTab('saved')}>
 					<LuBookmark size={24} /> <p style={{ display: isMobile ? 'none' : '' }}>Saved Posts</p>
+				</Btn>
+
+				<Btn
+					className={`${activeTab === 'subscribe' ? 'active' : ''}`}
+					onClick={() => setActiveTab('subscribe')}
+				>
+					<PiUsersThree size={24} /> <p style={{ display: isMobile ? 'none' : '' }}>Subscriptions</p>
 				</Btn>
 			</Wrap>
 		</Container>

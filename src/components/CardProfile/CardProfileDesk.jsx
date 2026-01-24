@@ -8,7 +8,7 @@ import instagram from '../../assets/SocialIcon/instagram.png';
 import telegram from '../../assets/SocialIcon/telegram.png';
 import ButtonLg from '../Buttons/ButtonLg';
 
-import { FiSettings } from 'react-icons/fi';
+import { FiSettings, FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import { AiOutlineDashboard } from 'react-icons/ai';
 
 const CardContainer = styled.div`
@@ -156,6 +156,11 @@ const CardProfileDesk = ({
 	setIsModalEditProfile,
 	setIsModalSetting,
 	isAllowed,
+	showSubscribe,
+	isFollowing,
+	onSubscribe,
+	onUnsubscribe,
+	loadingFollow,
 }) => {
 	return (
 		<CardContainer>
@@ -237,6 +242,32 @@ const CardProfileDesk = ({
 								<FiSettings size={28} color="var(--color-black-change)" />
 							</button>
 						</Settings>
+					)}
+					{showSubscribe && (
+						<ButtonLg
+							text={
+								isFollowing ? (
+									<>
+										<FiMinusCircle size={20} />
+										Unsubscribe
+									</>
+								) : (
+									<>
+										<FiPlusCircle size={20} />
+										Subscribe
+									</>
+								)
+							}
+							onClick={isFollowing ? onUnsubscribe : onSubscribe}
+							style={{
+								backgroundColor: 'var(--color-accent)',
+								color: 'var(--color-white)',
+								border: '1px solid var(--color-accent)',
+								display: 'flex',
+								alignItems: 'center',
+								gap: '8px',
+							}}
+						/>
 					)}
 				</Options>
 			</Info>

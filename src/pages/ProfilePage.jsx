@@ -14,6 +14,7 @@ import MessagesList from '../components/Messages/MessagesList';
 import InfoBoard from '../components/InfoBoard';
 import ProfilePosts from '../components/DifferentPosts/ProfilePosts';
 import SavedPosts from '../components/DifferentPosts/SavedPosts';
+import Subscribe from '../components/Subscribe';
 import { Container } from '../style/Container';
 
 const ProfileWrap = styled.div`
@@ -94,6 +95,8 @@ const ProfilePage = () => {
 					{activeTab === 'posts' && <ProfilePosts />}
 
 					{activeTab === 'saved' && <SavedPosts />}
+
+					{activeTab === 'subscribe' && <Subscribe />}
 				</>
 
 				{isModalEditProfile && (

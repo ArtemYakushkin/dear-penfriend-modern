@@ -6,6 +6,7 @@ import { useAuthorsStore } from '../store/useAuthorsStore';
 import { fetchAuthorPosts } from '../api/authorApi';
 import { stripHtml } from '../utils/textUtils';
 import { useAuthStore } from '../store/useAuthStore';
+import { useFollow } from '../hooks/useFollow';
 import Loader from '../components/Loader';
 import CardProfile from '../components/CardProfile/CardProfile';
 import TabsAuthor from '../components/Tabs/TabsAuthor';
@@ -33,6 +34,7 @@ const AuthorPage = () => {
 	const author = authors[uid];
 	const [posts, setPosts] = useState([]);
 	const [activeTab, setActiveTab] = useState(localStorage.getItem('activeTab') || 'about');
+	const { isFollowing, loading, follow, unfollow } = useFollow(uid, user);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -67,6 +69,11 @@ const AuthorPage = () => {
 					instagramLink={author.instagram}
 					telegramLink={author.telegram}
 					showSettings={false}
+					showSubscribe={!!user}
+					isFollowing={isFollowing}
+					onSubscribe={follow}
+					onUnsubscribe={unfollow}
+					loadingFollow={loading}
 				/>
 
 				<TabsAuthor activeTab={activeTab} setActiveTab={setActiveTab} author={author} />

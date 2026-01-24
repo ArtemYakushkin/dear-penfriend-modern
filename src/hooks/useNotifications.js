@@ -60,20 +60,6 @@ export const useNotifications = (user) => {
 		await markAsRead(notification.id);
 	};
 
-	// const markAsRead = async (id) => {
-	// 	await markNotificationAsRead(id);
-
-	// 	setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
-	// };
-
-	// const markAsReadByNotification = async (notification) => {
-	// 	if (notification.read) return;
-
-	// 	await markNotificationAsRead(notification.id);
-
-	// 	setNotifications((prev) => prev.map((n) => (n.id === notification.id ? { ...n, read: true } : n)));
-	// };
-
 	const deleteNotification = async (id) => {
 		await removeNotification(id);
 		setNotifications((prev) => prev.filter((n) => n.id !== id));

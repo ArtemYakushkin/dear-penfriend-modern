@@ -17,6 +17,11 @@ const CardProfile = ({
 	isAllowed,
 	setIsModalEditProfile,
 	setIsModalSetting,
+	showSubscribe,
+	isFollowing,
+	onSubscribe,
+	onUnsubscribe,
+	loadingFollow,
 }) => {
 	const { isMobile, isTablet } = useResponsive();
 
@@ -36,6 +41,11 @@ const CardProfile = ({
 					setIsModalSetting={setIsModalSetting}
 					showSettings={showSettings}
 					isAllowed={isAllowed}
+					showSubscribe={showSubscribe}
+					isFollowing={isFollowing}
+					onSubscribe={onSubscribe}
+					onUnsubscribe={onUnsubscribe}
+					loadingFollow={loadingFollow}
 				/>
 			) : isTablet ? (
 				<CardProfileTablet
@@ -51,6 +61,11 @@ const CardProfile = ({
 					setIsModalSetting={setIsModalSetting}
 					showSettings={showSettings}
 					isAllowed={isAllowed}
+					showSubscribe={showSubscribe}
+					isFollowing={isFollowing}
+					onSubscribe={onSubscribe}
+					onUnsubscribe={onUnsubscribe}
+					loadingFollow={loadingFollow}
 				/>
 			) : (
 				<CardProfileDesk
@@ -66,6 +81,11 @@ const CardProfile = ({
 					setIsModalSetting={setIsModalSetting}
 					showSettings={showSettings}
 					isAllowed={isAllowed}
+					showSubscribe={showSubscribe}
+					isFollowing={isFollowing}
+					onSubscribe={onSubscribe}
+					onUnsubscribe={onUnsubscribe}
+					loadingFollow={loadingFollow}
 				/>
 			)}
 		</>

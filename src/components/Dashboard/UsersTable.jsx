@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getCollectionData } from '../../api/dashboardService';
 
@@ -35,6 +36,7 @@ const UsersTable = () => {
 	const [search, setSearch] = useState('');
 	const [page, setPage] = useState(1);
 	const PAGE_SIZE = 5;
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		getCollectionData('users').then(setUsers);
@@ -54,6 +56,10 @@ const UsersTable = () => {
 		const start = (page - 1) * PAGE_SIZE;
 		return filteredUsers.slice(start, start + PAGE_SIZE);
 	}, [filteredUsers, page]);
+
+	const handleUser = (uid) => {
+		navigate(`/author/${uid}`);
+	};
 
 	useEffect(() => {
 		setPage(1);
@@ -114,7 +120,7 @@ const UsersTable = () => {
 				</thead>
 				<tbody>
 					{paginatedUsers.map((u) => (
-						<Tr key={u.id}>
+						<Tr key={u.id} onClick={() => handleUser(u.id)} style={{ cursor: 'pointer' }}>
 							<Td>
 								<Image src={u.avatar} alt="" />
 							</Td>
