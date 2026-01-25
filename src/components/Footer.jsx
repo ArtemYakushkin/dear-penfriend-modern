@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GoDotFill } from 'react-icons/go';
 
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock';
 import LogoBrand from './LogoBrand';
+import ModalHelp from './Modals/ModalHelp';
 import { Container } from '../style/Container';
 
 const FooterTop = styled.div`
@@ -51,7 +54,7 @@ const FooterTopSocial = styled.div`
 	gap: 20px;
 `;
 
-const FooterHelp = styled.a`
+const FooterHelp = styled.button`
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 16.8px;
@@ -177,31 +180,22 @@ const FooterCopyright = styled.p`
 `;
 
 const Footer = () => {
+	const [isOpen, setIsOpen] = useState(false);
+	useBodyScrollLock(isOpen);
+
 	return (
 		<div className="footer">
 			<FooterTop>
 				<Container>
 					<FooterTopWrap>
 						<FooterTopNav>
-							<LogoBrand
-								style={{ color: 'var(--color-white)' }}
-							/>
-							<FooterTopLink to={'/about'}>
-								About project
-							</FooterTopLink>
+							<LogoBrand style={{ color: 'var(--color-white)' }} />
+							<FooterTopLink to={'/about'}>About project</FooterTopLink>
 						</FooterTopNav>
 
 						<FooterTopSocial>
-							<FooterHelp
-								href="mailto:zimberger29101985@gmail.com"
-								target="_blank"
-								rel="noreferrer"
-							>
-								Help
-							</FooterHelp>
-							<FooterPrivacy to={'/privacy'}>
-								Privacy Policy
-							</FooterPrivacy>
+							<FooterHelp onClick={() => setIsOpen(true)}>Help</FooterHelp>
+							<FooterPrivacy to={'/privacy'}>Privacy Policy</FooterPrivacy>
 						</FooterTopSocial>
 					</FooterTopWrap>
 				</Container>
@@ -210,9 +204,7 @@ const Footer = () => {
 			<FooterCenter>
 				<Container>
 					<FooterCenterWrap>
-						<FooterCenterTitle>
-							The project was made by:
-						</FooterCenterTitle>
+						<FooterCenterTitle>The project was made by:</FooterCenterTitle>
 						<FooterCenterText>
 							<FooterCenterBlokText>
 								<GoDotFill
@@ -222,9 +214,7 @@ const Footer = () => {
 									}}
 								/>
 								<FooterCenterAuthor>
-									<FooterAuthorJob>
-										Project author
-									</FooterAuthorJob>
+									<FooterAuthorJob>Project author</FooterAuthorJob>
 									<FooterAuthorName
 										href="https://a-teacher.netlify.app/"
 										target="_blank"
@@ -243,9 +233,7 @@ const Footer = () => {
 									}}
 								/>
 								<FooterCenterAuthor>
-									<FooterAuthorJob>
-										Site developer
-									</FooterAuthorJob>
+									<FooterAuthorJob>Site developer</FooterAuthorJob>
 									<FooterAuthorName
 										href="https://artem-yakushkin.netlify.app"
 										target="_blank"
@@ -264,9 +252,7 @@ const Footer = () => {
 									}}
 								/>
 								<FooterCenterAuthor>
-									<FooterAuthorJob>
-										Website designer
-									</FooterAuthorJob>
+									<FooterAuthorJob>Website designer</FooterAuthorJob>
 									<FooterAuthorName
 										href="https://anastasiiahorbatenko.weblium.site/"
 										target="_blank"
@@ -283,11 +269,11 @@ const Footer = () => {
 
 			<FooterBottom>
 				<Container>
-					<FooterCopyright>
-						Dear Penfriend © 2024. All rights reserved
-					</FooterCopyright>
+					<FooterCopyright>Dear Penfriend © 2024. All rights reserved</FooterCopyright>
 				</Container>
 			</FooterBottom>
+
+			{isOpen && <ModalHelp onClose={() => setIsOpen(false)} />}
 		</div>
 	);
 };

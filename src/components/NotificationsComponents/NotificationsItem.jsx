@@ -135,7 +135,7 @@ const NotificationsItem = ({ notification, onItemClick, onRead, onDelete }) => {
 									day: '2-digit',
 									hour: '2-digit',
 									minute: '2-digit',
-							  })
+								})
 							: 'Date not available'}
 					</Date>
 				</TextBox>
@@ -148,7 +148,11 @@ const NotificationsItem = ({ notification, onItemClick, onRead, onDelete }) => {
 						onRead(notification.id);
 					}}
 				>
-					{read ? <IoCheckmarkCircleSharp size={20} /> : <IoCheckmarkCircleOutline size={20} />}
+					{read ? (
+						<IoCheckmarkCircleSharp size={20} />
+					) : (
+						<IoCheckmarkCircleOutline size={20} title="Mark as read" />
+					)}
 				</BtnActions>
 
 				<BtnActions
@@ -157,7 +161,7 @@ const NotificationsItem = ({ notification, onItemClick, onRead, onDelete }) => {
 						onDelete(notification.id);
 					}}
 				>
-					<AiOutlineDelete size={20} />
+					<AiOutlineDelete size={20} title="Delete" />
 				</BtnActions>
 
 				{!read && <PointRead />}
