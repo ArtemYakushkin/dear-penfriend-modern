@@ -37,8 +37,16 @@ const FooterTopNav = styled.div`
 
 	@media (max-width: 767px) {
 		width: 100%;
+		flex-direction: column;
 		justify-content: space-between;
+		gap: 28px;
 	}
+`;
+
+const FooterTopLinks = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 28px;
 `;
 
 const FooterTopLink = styled(Link)`
@@ -190,7 +198,10 @@ const Footer = () => {
 					<FooterTopWrap>
 						<FooterTopNav>
 							<LogoBrand style={{ color: 'var(--color-white)' }} />
-							<FooterTopLink to={'/about'}>About project</FooterTopLink>
+							<FooterTopLinks>
+								<FooterTopLink to={'/about'}>About project</FooterTopLink>
+								<FooterTopLink to={'/faqs'}>FAQs</FooterTopLink>
+							</FooterTopLinks>
 						</FooterTopNav>
 
 						<FooterTopSocial>

@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import PostDetailsPage from './pages/PostDetailsPage';
 import AboutPage from './pages/AboutPage';
+import FAQsPage from './pages/FAQsPage';
 import ProfilePage from './pages/ProfilePage';
 import AuthorPage from './pages/AuthorPage';
 import CreatePostPage from './pages/CreatePostPage';
@@ -46,6 +47,7 @@ const App = () => {
 						<Route path="/" element={<HomePage />} />
 						<Route path="/post/:postId" element={<PostDetailsPage />} />
 						<Route path="/about" element={<AboutPage />} />
+						<Route path="/faqs" element={<FAQsPage />} />
 						<Route path="/profile" element={<ProfilePage />} />
 						<Route path="/author/:uid" element={<AuthorPage />} />
 						<Route path="/create" element={<CreatePostPage />} />

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { MdOutlineRocketLaunch } from 'react-icons/md';
 import { FiLogOut, FiUser } from 'react-icons/fi';
 import { LuSun, LuMoon } from 'react-icons/lu';
+import { FaQuestion } from 'react-icons/fa';
 
 import { useAuthStore } from '../store/useAuthStore';
 import { ThemeContext } from '../context/ThemeContext';
@@ -25,10 +26,13 @@ const Mobile = styled.div`
 	border-bottom-right-radius: 10px;
 	opacity: 0;
 	transform: translateY(-10px);
-	transition: max-height 0.4s ease-in-out, opacity 0.3s ease, transform 0.3s ease;
+	transition:
+		max-height 0.4s ease-in-out,
+		opacity 0.3s ease,
+		transform 0.3s ease;
 
 	&.mobile-open {
-		max-height: 350px;
+		max-height: 410px;
 		opacity: 1;
 		transform: translateY(0);
 	}
@@ -92,6 +96,12 @@ const MobileMenu = ({ isOpen, closeMenu, openLogout, modalLogout }) => {
 								<p>About project</p>
 							</MobileLink>
 						</MobileItem>
+						<MobileItem>
+							<MobileLink to={'/faqs'} onClick={closeMenu}>
+								<FaQuestion size={24} />
+								<p>FAQs</p>
+							</MobileLink>
+						</MobileItem>
 						<MobileItem onClick={toggleTheme}>
 							<MobileLink>
 								{isDarkTheme ? <LuSun size={24} /> : <LuMoon size={24} />}
@@ -119,6 +129,12 @@ const MobileMenu = ({ isOpen, closeMenu, openLogout, modalLogout }) => {
 							<MobileLink to={'/about'} onClick={closeMenu}>
 								<MdOutlineRocketLaunch size={24} />
 								<p>About project</p>
+							</MobileLink>
+						</MobileItem>
+						<MobileItem>
+							<MobileLink to={'/faqs'} onClick={closeMenu}>
+								<FaQuestion size={24} />
+								<p>FAQs</p>
 							</MobileLink>
 						</MobileItem>
 						<MobileItem onClick={toggleTheme}>

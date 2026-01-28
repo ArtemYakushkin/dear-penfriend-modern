@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+const Wrap = styled.div`
+	display: flex;
+	align-items; center;
+	gap: 28px;
+
+	@media (max-width: 767px) {
+		display: none;
+	}
+`;
+
 const NavItem = styled(Link)`
 	position: relative;
 	font-weight: 600;
@@ -23,14 +33,15 @@ const NavItem = styled(Link)`
 	&:hover::after {
 		width: 100%;
 	}
-
-	@media (max-width: 767px) {
-		display: none;
-	}
 `;
 
 const MenuNav = () => {
-	return <NavItem to={'/about'}>About project</NavItem>;
+	return (
+		<Wrap>
+			<NavItem to={'/about'}>About project</NavItem>
+			<NavItem to={'/faqs'}>FAQs</NavItem>
+		</Wrap>
+	);
 };
 
 export default MenuNav;
